@@ -1,0 +1,145 @@
+.footer {
+  background-color: #3d5245; /* El verde oscuro de tu marca */
+  color: white;
+  padding: 80px 10% 40px;
+  font-family: 'Inter', sans-serif; /* O la fuente sans que uses */
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Estilo de la Marca */
+.footer .logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.footer .logo span {
+  color: #c48a56; /* Dorado/Cobre para 'Esence' */
+}
+
+.brand-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #d1d1d1;
+  max-width: 300px;
+}
+
+/* Estilo de Navegación */
+.footer h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-nav li {
+  margin-bottom: 12px;
+}
+
+.footer-nav a {
+  color: #d1d1d1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+  color: white;
+}
+
+/* Redes Sociales e Iconos */
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-link {
+  width: 45px;
+  height: 45px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  transform: translateY(-3px);
+}
+
+/* Parte Inferior */
+.footer-bottom {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.footer-bottom hr {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 30px;
+}
+
+.footer-bottom p {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer-social .social-icons {
+    justify-content: center;
+  }
+  
+  .brand-description {
+    margin: 0 auto;
+  }
+}
+
+.logo span {
+  color: #c48a56; /* El tono cobrizo de VF Esence */
+}
+
+.social-link:hover {
+  background-color: #c48a56;
+  border-color: #c48a56;
+  color: white;
+}
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-nav ul li a {
+  /* Asegúrate de que tus estilos actuales de .footer-nav a se apliquen */
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Puedes añadirles también una pequeña animación de hover */
+.footer-nav ul li a:hover {
+  transform: translateX(5px);
+  color: #c48a56; /* El dorado de tu marca */
+}

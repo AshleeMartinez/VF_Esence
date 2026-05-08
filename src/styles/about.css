@@ -1,0 +1,157 @@
+.about {
+  padding: 100px 10%;
+  background-color: #f8f7f5; /* Color crema suave de fondo */
+  color: #333;
+}
+
+.about-section, .values-section {
+  margin-bottom: 120px;
+  text-align: center;
+}
+
+.subtitle {
+  display: block;
+  letter-spacing: 4px;
+  font-size: 0.85rem;
+  color: #b08d57; /* Dorado/Marrón suave */
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+
+
+.intro-text {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.detailed-text {
+  max-width: 850px;
+  margin: 0 auto 60px;
+  column-count: 1; /* Puedes usar 2 si prefieres estilo periódico */
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* Tarjetas Misión/Visión horizontales */
+.mission-vision-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card-horizontal {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  text-align: left;
+  flex: 1;
+  min-width: 300px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+/* Grilla de Valores */
+.cards-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 50px;
+}
+
+.card-value {
+  background: transparent;
+  border: 1px solid #eee;
+  padding: 40px 20px;
+  border-radius: 25px;
+  transition: all 0.4s ease;
+}
+
+.card-value:hover {
+  background: white;
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+/* Estilos de Iconos (colores de las imágenes) */
+.icon-wrapper {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-box, .icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.green { background-color: #e8f3ee; color: #4a7c59; }
+.light-purple { background-color: #f0ecf7; color: #7d67a9; }
+.peach { background-color: #fdf0e4; color: #c48a56; }
+.dark-purple { background-color: #efebf5; color: #5e4b8b; }
+.orange { background-color: #fdf2e9; color: #d35400; }
+.purple { background-color: #f4ecf7; color: #8e44ad; }
+
+/* Refinamiento de los Títulos Principales */
+.about h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem; /* Un poco más grande como en la img 2 */
+  font-style: italic;
+  font-weight: 400; /* Peso ligero para que se vea elegante */
+  color: #1a1a1a;
+  margin-bottom: 30px;
+  letter-spacing: -1px; /* Títulos más compactos se ven más Pro */
+}
+
+/* El texto de Misión, Visión y Valores */
+.card-content h3, .card-value h3 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+/* Ajuste para los subtítulos (SOBRE NOSOTROS / LO QUE NOS DEFINE) */
+.subtitle {
+  display: block;
+  letter-spacing: 5px; /* Más espaciado entre letras */
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #c48a56; /* El tono cobrizo de la imagen 2 */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Texto descriptivo más suave */
+.intro-text, .detailed-text p, .card-value p, .card-content p {
+  font-family: 'Inter', sans-serif; /* O la que estés usando para el cuerpo */
+  font-weight: 300; /* Más delgada para que contraste con el título */
+  color: #555;
+  line-height: 1.8;
+}
+
+.card-value {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05); /* Borde casi invisible */
+  padding: 50px 30px;
+  border-radius: 20px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02); /* Sombra muy sutil */
+}
+
+.card-value:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(196, 138, 86, 0.1); /* Sombra con el color de la marca */
+}
