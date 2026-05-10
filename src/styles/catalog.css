@@ -1,6 +1,13 @@
 .catalog {
-  background: #f7f6f4;
+   background: rgba(250, 249, 248, 0.75);
+  backdrop-filter: blur(3px);
   padding: 100px 0;
+}
+
+
+.catalog {
+  position: relative;
+  z-index: 2;
 }
 
 /* HEADER */

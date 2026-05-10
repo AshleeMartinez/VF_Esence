@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: #faf9f8;
+  background: url('../assets/hero-bg.jpg') center/cover fixed;
   color: #1a1a1a;
   overflow-x: hidden;
 }

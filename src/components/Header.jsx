@@ -14,12 +14,12 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { name: "Inicio", path: "/" },          // 2. Cambiar 'id' por 'path'
-    { name: "Catálogo", path: "/catalogo" },
-    { name: "Nosotros", path: "/nosotros" },
-    { name: "Galería", path: "/galeria" },
-    { name: "Contacto", path: "/contacto" },
-  ];
+  { name: "Inicio", path: "/" },
+  { name: "Catálogo", path: "/catalogo" },
+  { name: "Nosotros", path: "/nosotros" },
+  { name: "Galería", path: "/galeria" },
+  { name: "Contacto", path: "/contacto" },
+];
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>

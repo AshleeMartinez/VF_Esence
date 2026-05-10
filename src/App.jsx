@@ -7,6 +7,7 @@ import Gallery from "./components/Gallery";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
+
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
           <>
             <Hero />
             <Catalog />
+         
           </>
         } />
 
