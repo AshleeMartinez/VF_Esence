@@ -180,3 +180,65 @@
   color: white !important;
   opacity: 1 !important;
 }
+
+/* --- ALINEACIÓN DEL FOOTER DE LA TARJETA --- */
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.2rem;
+}
+
+.product-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+/* --- BOTÓN AGREGAR PREMIUM --- */
+.add-to-cart-btn {
+  background-color: #1a1a1a;      /* Negro sólido elegante en lugar del naranja genérico */
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;            /* Forma orgánica redondeada */
+  padding: 0.6rem 1.2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.add-to-cart-btn:hover {
+  background-color: #c48a56;      /* Pasa a tu color cobre de marca */
+  transform: translateY(-2px);    /* Micro-interacción de elevación */
+  box-shadow: 0 6px 15px rgba(196, 138, 86, 0.2); /* Brillo cobrizo sutil */
+}
+
+.add-to-cart-btn:active {
+  transform: translateY(0);
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.product-actions button {
+  flex: 1;
+}
+
+.add-to-cart-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+

@@ -1,0 +1,190 @@
+/* Fondo oscuro con desenfoque de cristal */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* El panel lateral del carrito */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  max-width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%); /* Escondido a la derecha */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Transición ultra fluida */
+}
+
+.cart-sidebar.open {
+  transform: translateX(0); /* Entra a la pantalla */
+}
+
+/* Encabezado */
+.cart-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #3d5245; /* El verde oscuro de tu marca */
+}
+
+.cart-header h2 span {
+  font-size: 1.1rem;
+  color: #c48a56; /* Tu color cobre */
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+/* Cuerpo con Scroll para muchos productos */
+.cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.empty-cart {
+  text-align: center;
+  margin-top: 3rem;
+  color: #888;
+}
+
+.empty-cart p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Tarjeta de cada producto en el carrito */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+/* Animación sutil cuando aparece un item nuevo */
+.animate-item {
+  animation: fadeInSlide 0.3s ease forwards;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.item-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+  background-color: #fcfcfc;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-details h4 {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.item-price {
+  font-size: 0.9rem;
+  color: #c48a56;
+  font-weight: 500;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: #e63946; /* Rojo de advertencia sutil */
+  background-color: #fff5f5;
+}
+
+/* Parte Inferior (Totales y Botón de Pago) */
+.cart-footer {
+  padding: 1.5rem;
+  border-top: 1px solid #eaeaea;
+  background-color: #fdfdfd;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.checkout-btn {
+  width: 100%;
+  background-color: #3d5245; /* Verde corporativo */
+  color: #ffffff;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background-color: #2b3b32;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(61, 82, 69, 0.2);
+}

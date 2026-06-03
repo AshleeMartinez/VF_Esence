@@ -1,104 +1,169 @@
-.header {
-  position: fixed;
-  width: 100%;
-  padding: 20px 0;
-  transition: 0.3s;
-  z-index: 1000;
-}
+/* ==========================================================================
+   VF ESENCE - PREMIUM HEADER & NAVIGATION LOGIC
+   ========================================================================== */
 
-.header.scrolled {
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
-}
+/* Fuentes Tipográficas de Alta Gama */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Inter:wght@400;500&display=swap');
 
+/* --- CONTENEDOR GENERAL --- */
 .header-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* Empuja todo el contenido hacia la izquierda */
   align-items: center;
+  gap: 4rem;                   /* Distancia perfecta entre el logo y el menú */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-.logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-}
-
-
-
-/* Quita el estilo de link por defecto en el logo y nav */
-.logo a, 
-.nav a {
-  text-decoration: none; /* Quita el subrayado */
-  color: inherit;       /* Hereda el color del padre (seguramente blanco o negro) */
-}
-
-/* Opcional: Dale un estilo específico al logo para que resalte */
+/* --- LOGO MONOCROMÁTICO (MINIMAL LUXURY) --- */
 .logo a {
-  font-family: 'Playfair Display', serif; /* O la que estés usando */
-  font-weight: bold;
-  font-style: italic;
-  font-size: 1.5rem;
-  color: #333; /* O un tono café/dorado que combine con Deep Autumn */
+  text-decoration: none;
+  font-family: 'Cinzel', serif; /* Tipografía clásica romana, ideal para alta perfumería */
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a1a1a;               /* Tono grafito sólido y sofisticado */
+  letter-spacing: 0.25em;       /* Espaciado ancho que transmite elegancia */
+  transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
-/* Contenedor de navegación */
+.logo a:hover {
+  color: #c48a56;               /* Destello sutil en tono cobre */
+}
+
+/* --- ESTRUCTURA DEL MENÚ (ALINEADO A LA IZQUIERDA) --- */
 .nav {
   display: flex;
-  gap: 2rem; /* Esto separa los elementos */
+  gap: 2.5rem;                  /* Espaciado aireado entre los bloques principales */
   align-items: center;
 }
 
-/* Estilo base para los links */
-.nav a {
-  text-decoration: none;
-  color: inherit;
-  font-weight: 500;
+.nav-item-container {
   position: relative;
-  transition: color 0.3s ease;
-  padding: 5px 0;
+  padding: 15px 0;              /* Zona de activación cómoda para el cursor */
 }
 
-/* Animación "Loca" pero Elegante: El subrayado expansivo */
-.nav a::after {
+/* Enlaces principales (Inicio, Tienda, Marca, Ayuda) */
+.nav-link, 
+.nav-dropdown-toggle {
+  text-decoration: none;
+  color: #2c2c2c;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;       /* Estilo expansivo "clean aesthetic" */
+  text-transform: uppercase;     /* Todo en mayúsculas para un orden visual estricto */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Indicador de flecha en los dropdowns */
+.arrow {
+  font-size: 0.65rem;
+  color: #999;
+  transition: transform 0.4s ease, color 0.4s ease;
+}
+
+/* --- CONTENEDOR FLOTANTE (DROPDOWN) --- */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;                      /* Alineación exacta al inicio de la palabra */
+  background-color: #ffffff;
+  min-width: 220px;             /* Ancho ideal para que respire el texto interno */
+  
+  /* Sombras difuminadas de alta fidelidad (sin bordes duros) */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  
+  /* Configuración inicial oculta con desplazamiento sutil hacia abajo */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              visibility 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 100;
+}
+
+/* Enlaces internos del menú desplegable */
+.dropdown-link {
+  padding: 0.7rem 1.8rem;
+  text-decoration: none;
+  color: #555555;               /* Gris suave y legible */
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-align: left;
+  display: block;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Adaptación para elementos tipo botón dentro del dropdown (Carrito) */
+button.dropdown-link.style-as-link {
+  background: none;
+  border: none;
+  width: 100%;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* --- EFECTOS HOVER & MICRO-INTERACCIONES --- */
+
+/* Hover sobre las opciones principales */
+.nav-item-container:hover .nav-dropdown-toggle,
+.nav-item-container:hover .nav-link {
+  color: #c48a56;               /* Cambio al cobre insignia */
+}
+
+/* Animación de rotación de la flecha */
+.nav-item-container:hover .arrow {
+  transform: rotate(180deg);
+  color: #c48a56;
+}
+
+/* Transición de entrada del Dropdown (Efecto flotante hacia arriba) */
+.nav-item-container:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(4px);   /* Se posiciona con delicadeza */
+}
+
+/* Hover refinado con desplazamiento orgánico hacia la derecha */
+.dropdown-link:hover {
+  background-color: #fcfbfa;    /* Fondo crema imperceptible */
+  color: #c48a56;
+  padding-left: 2.2rem;         /* Micro-desplazamiento suave */
+}
+
+/* Línea expansiva inferior (Solo para links directos sin submenú) */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
   content: '';
   position: absolute;
   width: 100%;
   transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
+  height: 1px;                  /* Línea minimalista ultra fina */
+  bottom: -4px;
   left: 0;
-  background-color: #8b5e3c; /* Color café/dorado acorde a Deep Autumn */
+  background-color: #c48a56;
   transform-origin: bottom right;
-  transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.nav a:hover::after {
+.nav-link:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
-}
-
-/* Animación de flotado al pasar el mouse */
-.nav a:hover {
-  color: #8b5e3c;
-  transform: translateY(-2px); /* Pequeño salto hacia arriba */
-}
-
-/* Para que la transición de transformación funcione */
-.nav a {
-  display: inline-block;
-  transition: all 0.3s ease;
-}
-
-@keyframes revealText {
-  from {
-    clip-path: inset(0 100% 0 0);
-    transform: translateX(-20px);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-    transform: translateX(0);
-  }
-}
-
-.hero h1, .section-title {
-  animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 }

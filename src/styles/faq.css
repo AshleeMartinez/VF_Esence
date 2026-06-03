@@ -1,0 +1,230 @@
+/* ==========================================================================
+   VF ESENCE - FAQ EDITORIAL STYLE WITH GLASSMORPHISM
+   ========================================================================== */
+
+.faq-page-container {
+  max-width: 850px;
+  /* Añadimos un poco más de margen superior para equilibrar el espacio con el header */
+  margin: 160px auto 90px auto; 
+  padding: 0 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- ENCABEZADO EDITORIAL CON FONDO TRANSLÚCIDO (GLASSMORPHISM) --- */
+.faq-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  
+  /* El secreto del vidrio esmerilado */
+  background: rgba(255, 255, 255, 0.65); /* Blanco con 65% de opacidad */
+  backdrop-filter: blur(12px);           /* Desenfoca el fondo de la imagen */
+  -webkit-backdrop-filter: blur(12px);   /* Soporte para Safari */
+  
+  /* Espaciado interno para que respire el texto */
+  padding: 3rem 2rem;
+  border-radius: 16px;                   /* Bordes suaves que combinan con tu estética */
+  border: 1px solid rgba(255, 255, 255, 0.4); /* Un borde blanco casi imperceptible */
+  
+  /* Sombra sutil de gama alta para darle volumen sobre la imagen */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+}
+
+/* El texto superior pequeño en cobre */
+.faq-subtitle-top {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #c48a56;              
+  text-transform: uppercase;
+  letter-spacing: 0.3em;       
+  margin-bottom: 1rem;
+}
+
+/* Título Principal en Serif Cursiva */
+.faq-title {
+  font-family: 'Playfair Display', 'Cinzel', serif; 
+  font-style: italic;          
+  font-size: 3.2rem;           
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0 0 1.2rem 0;
+  letter-spacing: -0.01em;
+}
+
+/* Descripción inferior del encabezado */
+.faq-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  color: #2c2c2c;              /* Un tono ligeramente más oscuro para romper el contraste */
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- EL RESTO DE TU ACORDEÓN SE MANTIENE IGUAL --- */
+.faq-accordion-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.faq-item {
+  background-color: #fbfbfa;   
+  border: 1px solid #f2f0eb;
+  border-radius: 12px;         
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+/* ==========================================================================
+   VF ESENCE - FAQ EDITORIAL STYLE
+   ========================================================================== */
+
+.faq-page-container {
+  max-width: 850px;
+  margin: 140px auto 90px auto; /* Espaciado generoso debajo del Header */
+  padding: 0 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- ENCABEZADO EDITORIAL DE ALTA GAMA --- */
+.faq-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+/* El texto superior pequeño en cobre */
+.faq-subtitle-top {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #c48a56;              /* Color cobre insignia */
+  text-transform: uppercase;
+  letter-spacing: 0.3em;       /* Tracking extra expansivo idéntico a tus imágenes */
+  margin-bottom: 1rem;
+}
+
+/* Título Principal en Serif Cursiva */
+.faq-title {
+  font-family: 'Playfair Display', 'Cinzel', serif; 
+  font-style: italic;          /* Cursiva elegante idéntica a tus capturas */
+  font-size: 3.2rem;           /* Tamaño imponente y sofisticado */
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.01em;
+}
+
+/* Descripción inferior del encabezado */
+.faq-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  color: #555555;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- DISEÑO DEL ACORDEÓN DE PREGUNTAS --- */
+.faq-accordion-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.faq-item {
+  background-color: #fbfbfa;   /* Un fondo blanquecino roto muy sutil */
+  border: 1px solid #f2f0eb;
+  border-radius: 12px;         /* Bordes redondeados idénticos a tus campos de formulario */
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Al seleccionarse gana fondo blanco puro y una sombra levitando suave */
+.faq-item.active {
+  background-color: #ffffff;
+  border-color: #e5e0d8;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.02);
+}
+
+/* Botón de la pregunta */
+.faq-question-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.6rem 2.2rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-question-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #2c2c2c;
+  transition: color 0.3s ease;
+}
+
+.faq-question-btn:hover .faq-question-text {
+  color: #c48a56;              /* Transición al color cobre al pasar el mouse */
+}
+
+/* Flecha de control */
+.faq-arrow-icon {
+  color: #b5b5b5;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.faq-item.active .faq-arrow-icon {
+  color: #c48a56;
+}
+
+.faq-arrow-icon.rotate {
+  transform: rotate(180deg);
+}
+
+/* --- ANIMACIÓN FLUIDA DESPLEGABLE --- */
+.faq-answer-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.faq-answer-content.open {
+  max-height: 350px;           /* Altura máxima límite para la transición */
+}
+
+.faq-answer-inner {
+  padding: 0 2.2rem 1.8rem 2.2rem;
+}
+
+.faq-answer-inner p {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  color: #666666;
+  line-height: 1.7;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+  .faq-title {
+    font-size: 2.4rem;
+  }
+  .faq-question-btn {
+    padding: 1.3rem 1.5rem;
+  }
+  .faq-question-text {
+    font-size: 0.95rem;
+  }
+  .faq-answer-inner {
+    padding: 0 1.5rem 1.4rem 1.5rem;
+  }
+}
+/* ... conserva tus estilos de .faq-item.active, botones, flechas y respuestas abajo ... */

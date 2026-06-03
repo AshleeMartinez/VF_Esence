@@ -1,6 +1,9 @@
+import React, { useState } from "react";
 import useReveal from "../hooks/useReveal";
 import "../styles/catalog.css";
-import { useState } from "react";
+
+import { useCart } from "../context/CartContext";
+import { ShoppingBag } from "lucide-react";
 
 import p1 from "../assets/perfume-1.jpg";
 import p2 from "../assets/perfume-2.jpg";
@@ -9,70 +12,90 @@ import p4 from "../assets/perfume-4.jpg";
 import p5 from "../assets/perfume-5.jpg";
 import p6 from "../assets/perfume-6.jpg";
 
-const Catalog = () => {
+const Catalog = ({ products = [] }) => {
+  const { addToCart, setIsCartOpen } = useCart();
+
   useReveal();
+
+  const handleAddToBag = (product) => {
+  addToCart({
+    id: product.id,
+    name: product.nombre,
+    price: product.precio,
+    image: product.img,
+    size: product.cantidad
+  });
+
+  setIsCartOpen(true);
+};
 
   const productos = [
     {
+      id: 1,
       img: p1,
       tipo: "EN STOCK",
       clase: "green",
       nombre: "Noir Absolu",
       categoria: "DISEÑADOR",
-      precio: "$85",
+      precio: 85,
       cantidad: "100ml",
-      notas: "Oud, Vainilla, Ámbar"
+      notas: "Oud, Vainilla, Ámbar",
     },
     {
+      id: 2,
       img: p2,
       tipo: "EN STOCK",
       clase: "green",
       nombre: "Fleur Délicate",
       categoria: "DISEÑADOR",
-      precio: "$72",
+      precio: 72,
       cantidad: "75ml",
-      notas: "Jazmín, Peonía, Almizcle"
+      notas: "Jazmín, Peonía, Almizcle",
     },
     {
+      id: 3,
       img: p3,
       tipo: "POR ENCARGO",
       clase: "purple",
       nombre: "Ombre Intense",
       categoria: "NICHO",
-      precio: "$120",
+      precio: 120,
       cantidad: "100ml",
-      notas: "Cuero, Tabaco, Bergamota"
+      notas: "Cuero, Tabaco, Bergamota",
     },
     {
+      id: 4,
       img: p4,
       tipo: "EN STOCK",
       clase: "green",
       nombre: "Ambre Royal",
       categoria: "NICHO",
-      precio: "$95",
+      precio: 95,
       cantidad: "50ml",
-      notas: "Ámbar, Sándalo, Incienso"
+      notas: "Ámbar, Sándalo, Incienso",
     },
     {
+      id: 5,
       img: p5,
       tipo: "POR ENCARGO",
       clase: "purple",
       nombre: "Rose Eternelle",
       categoria: "DISEÑADOR",
-      precio: "$68",
+      precio: 68,
       cantidad: "100ml",
-      notas: "Rosa, Lichi, Pachulí"
+      notas: "Rosa, Lichi, Pachulí",
     },
     {
+      id: 6,
       img: p6,
       tipo: "EN STOCK",
       clase: "green",
       nombre: "Bleu Profond",
       categoria: "DISEÑADOR",
-      precio: "$88",
+      precio: 88,
       cantidad: "100ml",
-      notas: "Vetiver, Cedro, Bergamota"
-    }
+      notas: "Vetiver, Cedro, Bergamota",
+    },
   ];
 
   const [filtro, setFiltro] = useState("TODOS");
@@ -80,85 +103,107 @@ const Catalog = () => {
   const productosFiltrados =
     filtro === "TODOS"
       ? productos
-      : productos.filter(p => p.tipo === filtro);
-      const consultarWhatsApp = (producto) => {
-  const numero = "50587663145"; // 👈 TU NÚMERO (sin +, sin espacios)
+      : productos.filter((p) => p.tipo === filtro);
 
- const mensaje = `Hola, estoy interesado en la fragancia "${producto.nombre}" (${producto.cantidad}). Precio: ${producto.precio}. ¿Podrías brindarme más información?`;
+  const consultarWhatsApp = (producto) => {
+    const numero = "50587663145";
 
-  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    const mensaje = `Hola, estoy interesado en la fragancia "${producto.nombre}" (${producto.cantidad}). Precio: ${producto.precio}. ¿Podrías brindarme más información?`;
 
-  window.open(url, "_blank");
-};
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(
+      mensaje
+    )}`;
+
+    window.open(url, "_blank");
+  };
 
   return (
-    <section id="catalogo" className="catalog">
-      
-      <div className="catalog-header fade-up">
-        <p className="small">COLECCIÓN</p>
-        <h2>Nuestro Catálogo</h2>
-        <p className="desc">
-          Fragancias seleccionadas con cuidado: disponibles en stock o
-          disponibles por encargo según tus gustos.
-        </p>
-      </div>
+      <section id="catalogo" className="catalog">
+        <div className="catalog-header fade-up">
+          <p className="small">COLECCIÓN</p>
+          <h2>Nuestro Catálogo</h2>
 
-      <div className="filters fade-up delay-1">
-        <button
-          className={filtro === "TODOS" ? "active" : ""}
-          onClick={() => setFiltro("TODOS")}
-        >
-          TODOS
-        </button>
+          <p className="desc">
+            Fragancias seleccionadas con cuidado: disponibles en stock o
+            disponibles por encargo según tus gustos.
+          </p>
+        </div>
 
-        <button
-          className={filtro === "EN STOCK" ? "active" : ""}
-          onClick={() => setFiltro("EN STOCK")}
-        >
-          EN STOCK
-        </button>
+        <div className="filters fade-up delay-1">
+          <button
+            className={filtro === "TODOS" ? "active" : ""}
+            onClick={() => setFiltro("TODOS")}
+          >
+            TODOS
+          </button>
 
-        <button
-          className={filtro === "POR ENCARGO" ? "active" : ""}
-          onClick={() => setFiltro("POR ENCARGO")}
-        >
-          POR ENCARGO
-        </button>
-      </div>
+          <button
+            className={filtro === "EN STOCK" ? "active" : ""}
+            onClick={() => setFiltro("EN STOCK")}
+          >
+            EN STOCK
+          </button>
 
-      <div className="products">
-        {productosFiltrados.map((p, i) => (
-          <div className={`product fade-up delay-${i % 3}`} key={p.nombre}>
-            <img src={p.img} alt={p.nombre} />
+          <button
+            className={filtro === "POR ENCARGO" ? "active" : ""}
+            onClick={() => setFiltro("POR ENCARGO")}
+          >
+            POR ENCARGO
+          </button>
+        </div>
 
-            <span className={`badge ${p.clase}`}>{p.tipo}</span>
+        <div className="products">
+          {productosFiltrados.map((p, i) => (
+            <div
+              className={`product fade-up delay-${i % 3}`}
+              key={p.nombre}
+            >
+              <img src={p.img} alt={p.nombre} />
 
-            <div className="info">
-              <p className="categoria">{p.categoria}</p>
-              <h3>{p.nombre}</h3>
+              <span className={`badge ${p.clase}`}>
+                {p.tipo}
+              </span>
 
-              <p className="detalle">
-                Eau de Parfum · {p.cantidad}
-              </p>
+              <div className="info">
+                <p className="categoria">{p.categoria}</p>
 
-              <p className="notas">{p.notas}</p>
+                <h3>{p.nombre}</h3>
 
-              <div className="bottom">
-                <span className="precio">{p.precio}</span>
-                <button 
-  className="btn-main small"
-  onClick={() => consultarWhatsApp(p)}
->
-  Consultar
-</button>
+                <p className="detalle">
+                  Eau de Parfum · {p.cantidad}
+                </p>
+
+                <p className="notas">{p.notas}</p>
+
+    <div className="bottom">
+  <span className="precio">{p.precio}</span>
+</div>
+
+<div className="product-actions">
+  <button
+    className="btn-main small"
+    onClick={() => consultarWhatsApp(p)}
+  >
+    Consultar
+  </button>
+
+  <button
+    className="add-to-cart-btn"
+    onClick={() => handleAddToBag(p)}
+  >
+    <ShoppingBag size={16} />
+    <span>Agregar</span>
+  </button>
+</div>
+
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-    </section>
+          ))}
+        </div>
+      </section>
+    
   );
 };
 
 export default Catalog;
+ 
