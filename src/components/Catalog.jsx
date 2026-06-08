@@ -12,22 +12,21 @@ import p4 from "../assets/perfume-4.jpg";
 import p5 from "../assets/perfume-5.jpg";
 import p6 from "../assets/perfume-6.jpg";
 
-const Catalog = ({ products = [] }) => {
+const Catalog = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
   useReveal();
 
   const handleAddToBag = (product) => {
-  addToCart({
-    id: product.id,
-    name: product.nombre,
-    price: product.precio,
-    image: product.img,
-    size: product.cantidad
-  });
-
-  setIsCartOpen(true);
-};
+    addToCart({
+      id: product.id,
+      name: product.nombre,
+      price: product.precio,
+      image: product.img,
+      size: product.cantidad,
+    });
+    setIsCartOpen(true);
+  };
 
   const productos = [
     {
@@ -107,103 +106,80 @@ const Catalog = ({ products = [] }) => {
 
   const consultarWhatsApp = (producto) => {
     const numero = "50587663145";
-
-    const mensaje = `Hola, estoy interesado en la fragancia "${producto.nombre}" (${producto.cantidad}). Precio: ${producto.precio}. ¿Podrías brindarme más información?`;
-
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(
-      mensaje
-    )}`;
-
-    window.open(url, "_blank");
+    const mensaje = `Hola, estoy interesado en la fragancia "${producto.nombre}" (${producto.cantidad}). Precio: $${producto.precio}. ¿Podrías brindarme más información?`;
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, "_blank");
   };
 
   return (
-      <section id="catalogo" className="catalog">
-        <div className="catalog-header fade-up">
-          <p className="small">COLECCIÓN</p>
-          <h2>Nuestro Catálogo</h2>
+    <section id="catalogo" className="catalog">
+      <div className="catalog-header fade-up">
+        <p className="small">COLECCIÓN</p>
+        <h2>Nuestro Catálogo</h2>
+        <p className="desc">
+          Fragancias seleccionadas con cuidado: disponibles en stock o
+          disponibles por encargo según tus gustos.
+        </p>
+      </div>
 
-          <p className="desc">
-            Fragancias seleccionadas con cuidado: disponibles en stock o
-            disponibles por encargo según tus gustos.
-          </p>
-        </div>
+      <div className="filters fade-up delay-1">
+        <button
+          className={filtro === "TODOS" ? "active" : ""}
+          onClick={() => setFiltro("TODOS")}
+        >
+          TODOS
+        </button>
+        <button
+          className={filtro === "EN STOCK" ? "active" : ""}
+          onClick={() => setFiltro("EN STOCK")}
+        >
+          EN STOCK
+        </button>
+        <button
+          className={filtro === "POR ENCARGO" ? "active" : ""}
+          onClick={() => setFiltro("POR ENCARGO")}
+        >
+          POR ENCARGO
+        </button>
+      </div>
 
-        <div className="filters fade-up delay-1">
-          <button
-            className={filtro === "TODOS" ? "active" : ""}
-            onClick={() => setFiltro("TODOS")}
-          >
-            TODOS
-          </button>
+      <div className="products">
+        {productosFiltrados.map((p, i) => (
+          <div className={`product fade-up delay-${i % 3}`} key={p.id}>
+            <img src={p.img} alt={p.nombre} />
 
-          <button
-            className={filtro === "EN STOCK" ? "active" : ""}
-            onClick={() => setFiltro("EN STOCK")}
-          >
-            EN STOCK
-          </button>
+            <span className={`badge ${p.clase}`}>{p.tipo}</span>
 
-          <button
-            className={filtro === "POR ENCARGO" ? "active" : ""}
-            onClick={() => setFiltro("POR ENCARGO")}
-          >
-            POR ENCARGO
-          </button>
-        </div>
+            <div className="info">
+              <p className="categoria">{p.categoria}</p>
+              <h3>{p.nombre}</h3>
+              <p className="detalle">Eau de Parfum · {p.cantidad}</p>
+              <p className="notas">{p.notas}</p>
 
-        <div className="products">
-          {productosFiltrados.map((p, i) => (
-            <div
-              className={`product fade-up delay-${i % 3}`}
-              key={p.nombre}
-            >
-              <img src={p.img} alt={p.nombre} />
+              <div className="bottom">
+                <span className="precio">$ {p.precio.toFixed(2)}</span>
+              </div>
 
-              <span className={`badge ${p.clase}`}>
-                {p.tipo}
-              </span>
-
-              <div className="info">
-                <p className="categoria">{p.categoria}</p>
-
-                <h3>{p.nombre}</h3>
-
-                <p className="detalle">
-                  Eau de Parfum · {p.cantidad}
-                </p>
-
-                <p className="notas">{p.notas}</p>
-
-    <div className="bottom">
-  <span className="precio">{p.precio}</span>
-</div>
-
-<div className="product-actions">
-  <button
-    className="btn-main small"
-    onClick={() => consultarWhatsApp(p)}
-  >
-    Consultar
-  </button>
-
-  <button
-    className="add-to-cart-btn"
-    onClick={() => handleAddToBag(p)}
-  >
-    <ShoppingBag size={16} />
-    <span>Agregar</span>
-  </button>
-</div>
-
+              <div className="product-actions">
+                <button
+                  className="btn-main small"
+                  onClick={() => consultarWhatsApp(p)}
+                >
+                  Consultar
+                </button>
+                <button
+                  className="add-to-cart-btn"
+                  onClick={() => handleAddToBag(p)}
+                >
+                  <ShoppingBag size={16} />
+                  <span>Agregar</span>
+                </button>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
-    
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 
 export default Catalog;
- 
