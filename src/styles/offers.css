@@ -1,0 +1,476 @@
+.offers-page {
+  padding-top: 80px;
+  background: #faf8f6;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── HERO ── */
+.offers-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background: #fdf5f0;
+  border-radius: 16px;
+  margin: 24px 40px;
+  overflow: hidden;
+  min-height: 340px;
+  border: 1px solid #f0e8e0;
+}
+
+.offers-hero-text {
+  padding: 50px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.offers-hero-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #b06040;
+  text-transform: uppercase;
+}
+
+.offers-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.offers-hero-italic {
+  font-style: italic;
+  color: #c48a56;
+  font-weight: 400;
+}
+
+.offers-hero-desc {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.offers-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #c48a56;
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.offers-hero-btn:hover {
+  background: #b07844;
+  transform: translateY(-2px);
+}
+
+.offers-hero-img {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+}
+
+.offers-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.offers-hero-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid #c48a56;
+  background: rgba(255,255,255,0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1px;
+}
+
+.badge-top { font-size: 0.6rem; color: #c48a56; font-weight: 600; letter-spacing: 0.05em; }
+.badge-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #c48a56; line-height: 1; }
+.badge-bot { font-size: 0.55rem; color: #c48a56; font-weight: 600; letter-spacing: 0.03em; }
+
+/* ── GRID CATEGORÍAS ── */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 24px 40px;
+}
+
+.offers-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #f0ede6;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.offers-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
+}
+
+.offers-card-img {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.offers-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.offers-card:hover .offers-card-img img {
+  transform: scale(1.05);
+}
+
+.offers-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #c48a56;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+.offers-card-body {
+  padding: 16px 16px 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.offers-card-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.offers-card-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.offers-card-info p {
+  font-size: 0.8rem;
+  color: #888;
+  line-height: 1.5;
+}
+
+.offers-card-btn {
+  margin: 12px 16px 16px;
+  display: block;
+  text-align: center;
+  border: 1px solid #c48a56;
+  color: #c48a56;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+.offers-card-btn:hover {
+  background: #c48a56;
+  color: #fff;
+}
+
+/* ── FILA INFERIOR ── */
+.offers-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 0 40px 24px;
+}
+
+/* OFERTA SEMANA */
+.offers-week {
+  background: #fff8f4;
+  border: 1px solid #f0e4d8;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+}
+
+.offers-week-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.offers-week-icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(196,138,86,0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c48a56;
+  flex-shrink: 0;
+}
+
+.offers-week-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #c48a56;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.offers-week-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.offers-week-accent { color: #c48a56; font-style: italic; }
+
+.offers-week-sub { font-size: 0.8rem; color: #999; }
+
+.offers-week-right { display: flex; flex-direction: column; gap: 8px; }
+
+.countdown-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: #aaa;
+  font-weight: 600;
+}
+
+.countdown {
+  display: flex;
+  gap: 16px;
+}
+
+.countdown-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.countdown-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+.countdown-lbl {
+  font-size: 0.6rem;
+  color: #aaa;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+/* PERFUME DEL MES */
+.offers-featured {
+  background: #fff;
+  border: 1px solid #f0ede6;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  overflow: hidden;
+}
+
+.offers-featured-text {
+  padding: 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.offers-featured-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #c48a56;
+  text-transform: uppercase;
+}
+
+.offers-featured-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.offers-featured-brand {
+  font-size: 0.85rem;
+  color: #999;
+  margin: 0;
+}
+
+.offers-featured-desc {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 4px 0;
+}
+
+.offers-featured-price {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.price-old {
+  font-size: 1rem;
+  color: #bbb;
+  text-decoration: line-through;
+}
+
+.price-new {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.offers-featured-btn {
+  background: #c48a56;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.25s ease;
+}
+
+.offers-featured-btn:hover {
+  background: #b07844;
+  transform: translateY(-1px);
+}
+
+.offers-featured-img {
+  position: relative;
+  width: 200px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.offers-featured-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.offers-featured-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #c48a56;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  line-height: 1.2;
+}
+
+.offers-featured-badge span { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.05em; }
+
+/* ── GARANTÍAS ── */
+.offers-guarantees {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid #f0ede6;
+  background: #fff;
+}
+
+.guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 28px;
+  border-right: 1px solid #f0ede6;
+}
+
+.guarantee-item:last-child { border-right: none; }
+
+.guarantee-icon {
+  color: #c48a56;
+  flex-shrink: 0;
+}
+
+.guarantee-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+
+.guarantee-sub {
+  font-size: 0.78rem;
+  color: #999;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .offers-grid { grid-template-columns: repeat(2, 1fr); }
+  .offers-bottom { grid-template-columns: 1fr; }
+  .offers-guarantees { grid-template-columns: repeat(2, 1fr); }
+  .guarantee-item:nth-child(2) { border-right: none; }
+  .guarantee-item:nth-child(3) { border-right: 1px solid #f0ede6; border-top: 1px solid #f0ede6; }
+  .guarantee-item:nth-child(4) { border-right: none; border-top: 1px solid #f0ede6; }
+}
+
+@media (max-width: 768px) {
+  .offers-hero { grid-template-columns: 1fr; margin: 16px; }
+  .offers-hero-img { display: none; }
+  .offers-grid { grid-template-columns: 1fr; padding: 16px; }
+  .offers-bottom { padding: 0 16px 16px; }
+  .offers-hero-text { padding: 30px 24px; }
+  .offers-guarantees { grid-template-columns: 1fr; }
+  .guarantee-item { border-right: none; border-top: 1px solid #f0ede6; }
+}

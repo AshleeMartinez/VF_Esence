@@ -32,10 +32,9 @@ const Header = () => {
       submenu: [
         { name: "Nosotros", path: "/nosotros" },
         { name: "Galería", path: "/galeria" },
+        { name: "Blog", path: "/blog" },
       ]
     },
-    { name: "Blog", path: "/blog" },
-    { name: "Galería", path: "/galeria" },
     {
       name: "Ayuda",
       submenu: [
@@ -54,7 +53,7 @@ const Header = () => {
           <Link to="/">VF ESENCE</Link>
         </div>
 
-        {/* MENÚ CENTRO */}
+        {/* MENÚ */}
         <nav className="nav">
           {navItems.map((item, index) => (
             <div key={index} className="nav-item-container">
@@ -82,19 +81,10 @@ const Header = () => {
 
         {/* ICONOS DERECHA */}
         <div className="nav-icons">
-          <button
-            className="icon-btn"
-            onClick={() => setSearchOpen(!searchOpen)}
-            aria-label="Buscar"
-          >
+          <button className="icon-btn" onClick={() => setSearchOpen(!searchOpen)} aria-label="Buscar">
             <Search size={19} />
           </button>
-
-          <button
-            className="icon-btn cart-icon-btn"
-            onClick={() => setIsCartOpen(true)}
-            aria-label="Carrito"
-          >
+          <button className="icon-btn cart-icon-btn" onClick={() => setIsCartOpen(true)} aria-label="Carrito">
             <ShoppingBag size={19} />
             {totalItems > 0 && (
               <span className="cart-nav-count">{totalItems}</span>
@@ -103,15 +93,10 @@ const Header = () => {
         </div>
       </div>
 
-      {/* BARRA DE BÚSQUEDA DESPLEGABLE */}
+      {/* BARRA DE BÚSQUEDA */}
       {searchOpen && (
         <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Buscar fragancias..."
-            autoFocus
-            className="search-input"
-          />
+          <input type="text" placeholder="Buscar fragancias..." autoFocus className="search-input" />
           <button className="search-close" onClick={() => setSearchOpen(false)}>✕</button>
         </div>
       )}

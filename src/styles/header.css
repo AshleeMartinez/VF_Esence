@@ -9,7 +9,7 @@ header {
   z-index: 1000;
   padding: 18px 0;
   transition: all 0.4s ease;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -21,19 +21,14 @@ header.scrolled {
 
 /* --- CONTENEDOR --- */
 .header-content {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 2.5rem;
-  gap: 2rem;
+  padding: 0 3rem;
 }
 
 /* --- LOGO --- */
-.logo {
-  justify-self: start;
-}
-
 .logo a {
   text-decoration: none;
   font-family: 'Cinzel', serif;
@@ -49,12 +44,11 @@ header.scrolled {
   color: #c48a56;
 }
 
-/* --- MENÚ CENTRO --- */
+/* --- MENÚ --- */
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   align-items: center;
-  justify-self: center;
 }
 
 .nav-item-container {
@@ -123,7 +117,7 @@ header.scrolled {
   padding-left: 1.8rem;
 }
 
-/* --- HOVER EFECTOS --- */
+/* --- HOVER --- */
 .nav-item-container:hover .nav-dropdown-toggle,
 .nav-item-container:hover .nav-link {
   color: #c48a56;
@@ -164,7 +158,6 @@ header.scrolled {
 
 /* --- ICONOS DERECHA --- */
 .nav-icons {
-  justify-self: end;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -214,7 +207,7 @@ header.scrolled {
 .search-bar {
   display: flex;
   align-items: center;
-  padding: 12px 2.5rem;
+  padding: 12px 3rem;
   border-top: 1px solid rgba(0,0,0,0.06);
   background: #fff;
   animation: slideDown 0.25s ease;
@@ -257,16 +250,10 @@ header.scrolled {
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
   .header-content {
-    grid-template-columns: 1fr auto;
     padding: 0 1.5rem;
   }
-
   .nav {
     display: none;
-  }
-
-  .nav-icons {
-    justify-self: end;
   }
 }
 
