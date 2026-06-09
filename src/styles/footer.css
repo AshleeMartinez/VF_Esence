@@ -1,6 +1,6 @@
 .footer {
-  background-color: #ffffff;
-  border-top: 1px solid #eeebe4;
+  background-color: #3d4f45;
+  border-top: none;
   font-family: 'Inter', sans-serif;
 }
 
@@ -20,13 +20,13 @@
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.3em;
-  color: #1a1a1a;
+  color: #f0ece4;
   margin-bottom: 18px;
 }
 
 .footer-brand-desc {
   font-size: 0.88rem;
-  color: #888;
+  color: rgba(240, 236, 228, 0.6);
   line-height: 1.75;
   max-width: 260px;
   margin-bottom: 24px;
@@ -40,12 +40,12 @@
 .social-icon {
   width: 36px;
   height: 36px;
-  border: 1px solid #e5e0d8;
+  border: 1px solid rgba(240, 236, 228, 0.3);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #888;
+  color: rgba(240, 236, 228, 0.7);
   text-decoration: none;
   transition: all 0.25s ease;
 }
@@ -63,7 +63,7 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #1a1a1a;
+  color: #f0ece4;
   margin-bottom: 20px;
 }
 
@@ -80,7 +80,7 @@
 .footer-links li a {
   text-decoration: none;
   font-size: 0.88rem;
-  color: #777;
+  color: rgba(240, 236, 228, 0.6);
   transition: color 0.2s ease, padding-left 0.2s ease;
   display: inline-block;
 }
@@ -105,7 +105,7 @@
   align-items: center;
   gap: 9px;
   font-size: 0.88rem;
-  color: #777;
+  color: rgba(240, 236, 228, 0.6);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -121,14 +121,14 @@
 
 /* ── BOTTOM ── */
 .footer-bottom {
-  border-top: 1px solid #f0ede6;
+  border-top: 1px solid rgba(240, 236, 228, 0.1);
   padding: 22px 2rem;
   text-align: center;
 }
 
 .footer-bottom p {
   font-size: 0.8rem;
-  color: #bbb;
+  color: rgba(240, 236, 228, 0.35);
   letter-spacing: 0.03em;
 }
 
