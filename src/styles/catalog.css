@@ -242,3 +242,55 @@
   gap: 8px;
 }
 
+/* --- CONTENEDOR DE IMAGEN Y DESCUENTO --- */
+.product-img-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+/* Etiqueta de Descuento (Top-Left sobre la imagen) */
+.badge-discount {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #c48a56; /* Tu color cobre insignia */
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --- MANEJO DE PRECIOS EDITORIALES --- */
+.precio-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+/* El precio normal o el de oferta actual */
+.precio, .precio-oferta {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.precio-oferta {
+  color: #c48a56; /* Destacamos el precio rebajado en cobre */
+}
+
+/* Precio viejo tachado */
+.precio-original {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #999999;
+  text-decoration: line-through; /* Tacha el precio original */
+  font-weight: 400;
+}
