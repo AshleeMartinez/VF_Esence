@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { ShoppingBag, Search } from 'lucide-react';
 import '../styles/header.css';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
-  const { setIsCartOpen } = useCart();
+  const [searchOpen, setSearchOpen] = useState(false);
+  const { setIsCartOpen, cartItems } = useCart();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const navItems = [
     { name: "Inicio", path: "/" },
@@ -23,7 +25,6 @@ const Header = () => {
         { name: "Catálogo", path: "/catalogo" },
         { name: "Productos Destacados", path: "/destacados" },
         { name: "Ofertas", path: "/ofertas" },
-        { name: "Carro de Compras", path: "/carrito" }
       ]
     },
     {
@@ -31,7 +32,7 @@ const Header = () => {
       submenu: [
         { name: "Nosotros", path: "/nosotros" },
         { name: "Galería", path: "/galeria" },
-        { name: "Blog", path: "/blog" }
+        { name: "Blog", path: "/blog" },
       ]
     },
     {
@@ -45,13 +46,14 @@ const Header = () => {
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container header-content">
-        {/* LOGO DE UN SOLO COLOR */}
+      <div className="header-content">
+
+        {/* LOGO */}
         <div className="logo">
           <Link to="/">VF ESENCE</Link>
         </div>
 
-        {/* MENÚ ALINEADO A LA IZQUIERDA */}
+        {/* MENÚ */}
         <nav className="nav">
           {navItems.map((item, index) => (
             <div key={index} className="nav-item-container">
@@ -61,24 +63,11 @@ const Header = () => {
                     {item.name} <span className="arrow">▾</span>
                   </span>
                   <div className="dropdown-menu">
-                    {item.submenu.map((subItem, subIndex) => {
-                      if (subItem.name === "Carro de Compras") {
-                        return (
-                          <button 
-                            key={subIndex} 
-                            onClick={() => setIsCartOpen(true)} 
-                            className="dropdown-link style-as-link"
-                          >
-                            {subItem.name}
-                          </button>
-                        );
-                      }
-                      return (
-                        <Link key={subIndex} to={subItem.path} className="dropdown-link">
-                          {subItem.name}
-                        </Link>
-                      );
-                    })}
+                    {item.submenu.map((subItem, subIndex) => (
+                      <Link key={subIndex} to={subItem.path} className="dropdown-link">
+                        {subItem.name}
+                      </Link>
+                    ))}
                   </div>
                 </>
               ) : (
@@ -89,7 +78,28 @@ const Header = () => {
             </div>
           ))}
         </nav>
+
+        {/* ICONOS DERECHA */}
+        <div className="nav-icons">
+          <button className="icon-btn" onClick={() => setSearchOpen(!searchOpen)} aria-label="Buscar">
+            <Search size={19} />
+          </button>
+          <button className="icon-btn cart-icon-btn" onClick={() => setIsCartOpen(true)} aria-label="Carrito">
+            <ShoppingBag size={19} />
+            {totalItems > 0 && (
+              <span className="cart-nav-count">{totalItems}</span>
+            )}
+          </button>
+        </div>
       </div>
+
+      {/* BARRA DE BÚSQUEDA */}
+      {searchOpen && (
+        <div className="search-bar">
+          <input type="text" placeholder="Buscar fragancias..." autoFocus className="search-input" />
+          <button className="search-close" onClick={() => setSearchOpen(false)}>✕</button>
+        </div>
+      )}
     </header>
   );
 };

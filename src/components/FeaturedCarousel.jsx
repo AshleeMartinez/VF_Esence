@@ -1,67 +1,68 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import "../styles/featured-carousel.css";
 
-import p1 from "../assets/perfume-1.jpg";
-import p2 from "../assets/perfume-2.jpg";
-import p3 from "../assets/perfume-3.jpg";
-import p4 from "../assets/perfume-4.jpg";
-import p5 from "../assets/perfume-5.jpg";
+
 import p6 from "../assets/perfume-6.jpg";
+import p7 from "../assets/perfume-7.jpg";
+import p8 from "../assets/perfume-8.jpg";
+import p9 from "../assets/perfume-9.jpg";
+import p10 from "../assets/perfume-10.jpg";
+import p11 from "../assets/perfume-11.jpg";
 
 const destacados = [
   {
-    img: p1,
-    nombre: "Noir Absolu",
-    categoria: "DISEÑADOR",
-    precio: "$85",
-    cantidad: "100ml",
-    notas: "Oud · Vainilla · Ámbar",
+    img: p11,
+    nombre: "Tobacco Vanille (Tom Ford)",
+    categoria: "NICHO",
+    precio: "$295",
+    cantidad: "50ml",
+    notas: "Hojas de Tabaco · Vainilla · Cacao · Frutos Secos",
     descripcion: "Una fragancia oscura y envolvente que deja una huella imborrable.",
     tipo: "EN STOCK",
   },
   {
-    img: p2,
-    nombre: "Fleur Délicate",
+    img: p10,
+    nombre: "Y Eau de Parfum",
     categoria: "DISEÑADOR",
-    precio: "$72",
-    cantidad: "75ml",
-    notas: "Jazmín · Peonía · Almizcle",
+    precio: "$130",
+    cantidad: "100ml",
+    notas: "Manzana · Jengibre · Salvia · Bergamota",
     descripcion: "La suavidad de las flores de primavera capturada en un frasco.",
     tipo: "EN STOCK",
   },
   {
-    img: p3,
-    nombre: "Ombre Intense",
-    categoria: "NICHO",
-    precio: "$120",
-    cantidad: "100ml",
-    notas: "Cuero · Tabaco · Bergamota",
+    img: p9,
+    nombre: "Acqua di Giò Profundo",
+    categoria: "DISEÑADOR",
+    precio: "$125",
+    cantidad: "75ml",
+    notas: "Notas Marinas · Mandarina Verde · Romero · Alizcle",
     descripcion: "Audaz y sofisticado. Una firma para quienes no pasan desapercibidos.",
     tipo: "POR ENCARGO",
   },
   {
-    img: p4,
-    nombre: "Ambre Royal",
-    categoria: "NICHO",
-    precio: "$95",
-    cantidad: "50ml",
-    notas: "Ámbar · Sándalo · Incienso",
+    img: p8,
+    nombre: "Sauvage Elixir",
+    categoria: "DISEÑADOR",
+    precio: "$165",
+    cantidad: "60ml",
+    notas: "Canela · Nuez Moscada · Lavanda · Regaliz",
     descripcion: "La realeza del ámbar fundida con maderas sagradas del oriente.",
     tipo: "EN STOCK",
   },
   {
-    img: p5,
-    nombre: "Rose Eternelle",
+    img: p7,
+    nombre: "Bleu de Chanel",
     categoria: "DISEÑADOR",
-    precio: "$68",
+    precio: "$145",
     cantidad: "100ml",
-    notas: "Rosa · Lichi · Pachulí",
-    descripcion: "Una rosa que nunca se desvanece. Romance eterno en cada gota.",
-    tipo: "POR ENCARGO",
+    notas: "Toronja · Menta · Incienso · Cedro",
+    descripcion: "PONER TEXTO SEXY AQUÍ",
+    tipo: "POR STOCK",
   },
   {
     img: p6,
-    nombre: "Bleu Profond",
+    nombre: "Acqua di Gio",
     categoria: "DISEÑADOR",
     precio: "$88",
     cantidad: "100ml",

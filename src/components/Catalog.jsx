@@ -5,8 +5,15 @@ import "../styles/catalog.css";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
-
 import p1 from "../assets/perfume-1.jpg";
+import p2 from "../assets/perfume-2.jpg";
+import p3 from "../assets/perfume-3.jpg";
+import p4 from "../assets/perfume-4.jpg";
+import p5 from "../assets/perfume-5.jpg";
+import p6 from "../assets/perfume-6.jpg";
+import p7 from "../assets/perfume-7.jpg";
+import p8 from "../assets/perfume-8.jpg";
+import p9 from "../assets/perfume-9.jpg";
 import p10 from "../assets/perfume-10.jpg";
 import p11 from "../assets/perfume-11.jpg";
 import p12 from "../assets/perfume-12.jpg";
@@ -17,7 +24,6 @@ import p16 from "../assets/perfume-16.jpg";
 import p17 from "../assets/perfume-17.jpg";
 import p18 from "../assets/perfume-18.jpg";
 import p19 from "../assets/perfume-19.jpg";
-import p2 from "../assets/perfume-2.jpg";
 import p20 from "../assets/perfume-20.jpg";
 import p21 from "../assets/perfume-21.jpg";
 import p22 from "../assets/perfume-22.jpg";
@@ -28,14 +34,7 @@ import p26 from "../assets/perfume-26.jpg";
 import p27 from "../assets/perfume-27.jpg";
 import p28 from "../assets/perfume-28.jpg";
 import p29 from "../assets/perfume-29.jpg";
-import p3 from "../assets/perfume-3.jpg";
 import p30 from "../assets/perfume-30.jpg";
-import p4 from "../assets/perfume-4.jpg";
-import p5 from "../assets/perfume-5.jpg";
-import p6 from "../assets/perfume-6.jpg";
-import p7 from "../assets/perfume-7.jpg";
-import p8 from "../assets/perfume-8.jpg";
-import p9 from "../assets/perfume-9.jpg";
 
 const BBDD_PRODUCTOS = [
   {
@@ -61,7 +60,7 @@ const BBDD_PRODUCTOS = [
     cantidad: "75ml",
     notas: "Jazmín, Peonía, Almizcle",
     enOferta: false,
-    descuento: 15 // 15% de descuento
+    descuento: 15
   },
   {
     id: 3,
@@ -112,104 +111,103 @@ const BBDD_PRODUCTOS = [
     notas: "Vetiver, Cedro, Laúdano",
     enOferta: false
   },
-  // --- NUEVAS INCORPORACIONES DE ALTA GAMA ---
-{
-  id: 7,
-  img: p7,
-  tipo: "EN STOCK",
-  clase: "green",
-  nombre: "Bleu de Chanel",
-  categoria: "DISEÑADOR",
-  precio: 145,
-  cantidad: "100ml",
-  notas: "Toronja, Menta, Incienso, Cedro",
-  enOferta: false
-},
-{
-  id: 8,
-  img: p8,
-  tipo: "EN STOCK",
-  clase: "green",
-  nombre: "Sauvage Elixir",
-  categoria: "DISEÑADOR",
-  precio: 165,
-  cantidad: "60ml",
-  notas: "Canela, Nuez Moscada, Lavanda, Regaliz",
-  enOferta: false
-},
-{
-  id: 9,
-  img: p9,
-  tipo: "POR ENCARGO",
-  clase: "purple",
-  nombre: "Acqua di Giò Profundo",
-  categoria: "DISEÑADOR",
-  precio: 125,
-  cantidad: "75ml",
-  notas: "Notas Marinas, Mandarina Verde, Romero, Alizcle",
-  enOferta: false
-},
-{
-  id: 10,
-  img: p10,
-  tipo: "EN STOCK",
-  clase: "green",
-  nombre: "Y Eau de Parfum",
-  categoria: "DISEÑADOR",
-  precio: 130,
-  cantidad: "100ml",
-  notas: "Manzana Manzana, Jengibre, Salvia, Bergamota",
-  enOferta: false
-},
-{
-  id: 11,
-  img: p11,
-  tipo: "POR ENCARGO",
-  clase: "purple",
-  nombre: "Tobacco Vanille (Tom Ford)",
-  categoria: "NICHO",
-  precio: 295,
-  cantidad: "50ml",
-  notas: "Hojas de Tabaco, Vainilla, Cacao, Frutos Secos",
-  enOferta: false
-},
-{
-  id: 12,
-  img: p12,
-  tipo: "EN STOCK",
-  clase: "green",
-  nombre: "Club de Nuit Intense Man",
-  categoria: "DISEÑADOR",
-  precio: 55,
-  cantidad: "105ml",
-  notas: "Limón, Piña, Abedul, Almizcle, Ámbar Gris",
-  enOferta: false
-},
-{
-  id: 13,
-  img: p13,
-  tipo: "EN STOCK",
-  clase: "green",
-  nombre: "Baccarat Rouge 540",
-  categoria: "NICHO",
-  precio: 325,
-  cantidad: "70ml",
-  notas: "Azafrán, Jazmín, Madera de Ámbar, Resina de Abeto",
-  enOferta: false
-},
-{
-  id: 14,
-  img: p14,
-  tipo: "POR ENCARGO",
-  clase: "purple",
-  nombre: "Cedrat Boise by Mancera",
-  categoria: "NICHO",
-  precio: 140,
-  cantidad: "120ml",
-  notas: "Grosellas Negras, Cítricos, Notas Sándalo, Cuero",
-  enOferta: false
-},
-{
+  {
+    id: 7,
+    img: p7,
+    tipo: "EN STOCK",
+    clase: "green",
+    nombre: "Bleu de Chanel",
+    categoria: "DISEÑADOR",
+    precio: 145,
+    cantidad: "100ml",
+    notas: "Toronja, Menta, Incienso, Cedro",
+    enOferta: false
+  },
+  {
+    id: 8,
+    img: p8,
+    tipo: "EN STOCK",
+    clase: "green",
+    nombre: "Sauvage Elixir",
+    categoria: "DISEÑADOR",
+    precio: 165,
+    cantidad: "60ml",
+    notas: "Canela, Nuez Moscada, Lavanda, Regaliz",
+    enOferta: false
+  },
+  {
+    id: 9,
+    img: p9,
+    tipo: "POR ENCARGO",
+    clase: "purple",
+    nombre: "Acqua di Giò Profundo",
+    categoria: "DISEÑADOR",
+    precio: 125,
+    cantidad: "75ml",
+    notas: "Notas Marinas, Mandarina Verde, Romero, Alizcle",
+    enOferta: false
+  },
+  {
+    id: 10,
+    img: p10,
+    tipo: "EN STOCK",
+    clase: "green",
+    nombre: "Y Eau de Parfum",
+    categoria: "DISEÑADOR",
+    precio: 130,
+    cantidad: "100ml",
+    notas: "Manzana, Jengibre, Salvia, Bergamota",
+    enOferta: false
+  },
+  {
+    id: 11,
+    img: p11,
+    tipo: "POR ENCARGO",
+    clase: "purple",
+    nombre: "Tobacco Vanille (Tom Ford)",
+    categoria: "NICHO",
+    precio: 295,
+    cantidad: "50ml",
+    notas: "Hojas de Tabaco, Vainilla, Cacao, Frutos Secos",
+    enOferta: false
+  },
+  {
+    id: 12,
+    img: p12,
+    tipo: "EN STOCK",
+    clase: "green",
+    nombre: "Club de Nuit Intense Man",
+    categoria: "DISEÑADOR",
+    precio: 55,
+    cantidad: "105ml",
+    notas: "Limón, Piña, Abedul, Almizcle, Ámbar Gris",
+    enOferta: false
+  },
+  {
+    id: 13,
+    img: p13,
+    tipo: "EN STOCK",
+    clase: "green",
+    nombre: "Baccarat Rouge 540",
+    categoria: "NICHO",
+    precio: 325,
+    cantidad: "70ml",
+    notas: "Azafrán, Jazmín, Madera de Ámbar, Resina de Abeto",
+    enOferta: false
+  },
+  {
+    id: 14,
+    img: p14,
+    tipo: "POR ENCARGO",
+    clase: "purple",
+    nombre: "Cedrat Boise by Mancera",
+    categoria: "NICHO",
+    precio: 140,
+    cantidad: "120ml",
+    notas: "Grosellas Negras, Cítricos, Notas Sándalo, Cuero",
+    enOferta: false
+  },
+  {
     id: 15,
     img: p15,
     tipo: "EN STOCK",
@@ -221,7 +219,6 @@ const BBDD_PRODUCTOS = [
     notas: "Menta, Manzana Verde, Limón Italiano, Habtonka",
     enOferta: false
   },
-  // --- SEGUNDA TANDA---
   {
     id: 16,
     img: p16,
@@ -240,7 +237,7 @@ const BBDD_PRODUCTOS = [
     tipo: "EN STOCK",
     clase: "green",
     nombre: "Le Male Elixir (Jean Paul Gaultier)",
-    categoria: "DISEÑADOR",
+    categoria: "DISEDSADOR",
     precio: 135,
     cantidad: "125ml",
     notas: "Lavanda, Menta, Vainilla, Benzofuí, Miel",
@@ -411,7 +408,6 @@ const Catalog = () => {
   useReveal();
 
   const handleAddToBag = (product) => {
-    // Si el producto está en oferta, mandamos el precio calculado final al carrito
     const precioFinal = product.enOferta 
       ? Math.round(product.precio * (1 - product.descuento / 100))
       : product.precio;
@@ -423,7 +419,7 @@ const Catalog = () => {
       image: product.img,
       size: product.cantidad
     });
-
+    
     setIsCartOpen(true);
   };
 
@@ -439,7 +435,6 @@ const Catalog = () => {
       : producto.precio;
 
     const mensaje = `Hola, estoy interesado en la fragancia "${producto.nombre}" (${producto.cantidad}). Precio: $${precioFinal}. ¿Podrías brindarme más información?`;
-
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
   };
@@ -469,9 +464,8 @@ const Catalog = () => {
 
       <div className="products">
         {productosFiltrados.map((p, i) => {
-          // Lógica para calcular precio final si tiene descuento
           const tieneDescuento = p.enOferta;
-          const precioConDescuento = tieneDescuento 
+          const precioConDescuento = tieneDescuento
             ? Math.round(p.precio * (1 - p.descuento / 100))
             : p.precio;
 
@@ -524,4 +518,3 @@ const Catalog = () => {
 };
 
 export default Catalog;
- 
