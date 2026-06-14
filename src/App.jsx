@@ -14,7 +14,7 @@ import Contact from "./components/Contact";
 
 // Nuevos componentes para completar las páginas
 import Offers from "./components/Offers"; 
-import Blog from "./components/Blog";
+import Blog, { BlogArticle } from "./components/Blog";
 import Faq from "./components/Faq";
 import CartPage from "./components/CartPage";
 
@@ -44,6 +44,7 @@ function App() {
           <Route path="/nosotros"   element={<About />} />
           <Route path="/galeria"    element={<Gallery />} />
           <Route path="/blog"       element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogArticle />} />
 
           {/* MENÚ: AYUDA */}
           <Route path="/faq"        element={<Faq />} />
