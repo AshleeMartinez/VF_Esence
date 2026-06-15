@@ -6,7 +6,14 @@ import '../styles/cartSidebar.css';
 const CartSidebar = () => {
   const { cartItems, isCartOpen, setIsCartOpen, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = cartItems.reduce((sum, item) => {
+    const itemPrice = Number(item.price) || 0;
+    const itemQuantity = item.quantity || 0;
+    const subtotalItem = item.tipoOferta === "2x1"
+      ? Math.ceil(itemQuantity / 2) * itemPrice
+      : itemPrice * itemQuantity;
+    return sum + subtotalItem;
+  }, 0);
   const envio = subtotal > 0 && subtotal < 400 ? 12 : 0;
   const total = subtotal + envio;
   const freeShipThreshold = 400;
@@ -76,7 +83,14 @@ const CartSidebar = () => {
                   </div>
 
                   <div className="cs-item-right">
-                    <span className="cs-item-price">$ {(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="cs-item-price">$ {(() => {
+                      const itemPrice = Number(item.price) || 0;
+                      const itemQuantity = item.quantity || 0;
+                      const subtotalItem = item.tipoOferta === "2x1"
+                        ? Math.ceil(itemQuantity / 2) * itemPrice
+                        : itemPrice * itemQuantity;
+                      return subtotalItem.toFixed(2);
+                    })()}</span>
                     <button
                       className="cs-delete"
                       onClick={() => removeFromCart(item.id)}

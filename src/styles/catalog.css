@@ -150,7 +150,7 @@
   margin-bottom: 15px;
 }
 
-/* PRECIO — alineado a la derecha */
+/* PRECIO */
 .bottom {
   display: flex;
   justify-content: flex-end;
@@ -242,7 +242,7 @@
   }
 }
 
-/* --- CONTENEDOR DE IMAGEN Y DESCUENTO --- */
+/* CONTENEDOR DE IMAGEN Y DESCUENTO */
 .product-img-container {
   position: relative;
   width: 100%;
@@ -291,3 +291,154 @@
   font-weight: 700;
   color: #1a1a1a;
 }
+
+/* ================================================
+   BANNER DE FILTRO ACTIVO — Diseño C (Tarjeta con ícono)
+   ================================================ */
+
+.catalog-filter-banner {
+  display: flex;
+  justify-content: center;
+  margin: 0 40px 36px;
+}
+
+.catalog-filter-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 860px;
+  background: #fdf6ee;
+  border: 1px solid #e8d5be;
+  border-radius: 14px;
+  padding: 16px 22px;
+  gap: 16px;
+}
+
+.catalog-filter-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.catalog-filter-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: #c48a56;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.catalog-filter-icon-box svg {
+  display: block;
+}
+
+.catalog-filter-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.catalog-filter-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: #c48a56;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+.catalog-filter-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2f2318;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.catalog-filter-count {
+  font-size: 12px;
+  color: #9a8c7e;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.catalog-filter-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: 1.5px solid #c48a56;
+  border-radius: 24px;
+  padding: 9px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #c48a56;
+  cursor: pointer;
+  transition: background 0.22s ease, color 0.22s ease;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+}
+
+.catalog-filter-clear:hover {
+  background: #c48a56;
+  color: #fff;
+}
+
+/* Estado vacío */
+.catalog-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+}
+
+.catalog-empty p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.catalog-empty-btn {
+  background: #2f4a3f;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 28px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.catalog-empty-btn:hover {
+  background: #c48a56;
+}
+
+/* Responsive banner */
+@media (max-width: 1024px) {
+  .catalog-filter-banner {
+    margin: 0 24px 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .catalog-filter-banner {
+    margin: 0 16px 20px;
+  }
+
+  .catalog-filter-banner-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+  }
+
+  .catalog-filter-clear {
+    align-self: flex-end;
+  }
+} 

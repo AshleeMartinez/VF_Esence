@@ -30,11 +30,40 @@ const useCountdown = (targetDate) => {
   return timeLeft;
 };
 
+// Cada categoría tiene su `genero` que coincide con los generos[] del catálogo
 const categorias = [
-  { img: p12, badge: 'HASTA 30% OFF', nombre: 'Perfumes Florales', desc: 'Fragancias frescas y elegantes para cada ocasión.', btn: 'COMPRAR AHORA' },
-  { img: p13, badge: '2X1', nombre: 'Perfumes de Nicho', desc: 'Ediciones exclusivas y aromas únicos que te distinguen.', btn: 'DESCUBRIR' },
-  { img: p15, badge: 'DESDE 20% OFF', nombre: 'Perfumes Masculinos', desc: 'Aromas intensos y sofisticados de marcas reconocidas.', btn: 'VER COLECCIÓN' },
-  { img: p14, badge: 'HASTA 40% OFF', nombre: 'Perfumes Femeninos', desc: 'Fragancias irresistibles para cada momento de tu día.', btn: 'COMPRAR' },
+  {
+    img: p12,
+    badge: 'HASTA 30% OFF',
+    nombre: 'Perfumes Florales',
+    desc: 'Fragancias frescas y elegantes para cada ocasión.',
+    btn: 'COMPRAR AHORA',
+    genero: 'floral',
+  },
+  {
+    img: p13,
+    badge: '2X1',
+    nombre: 'Perfumes de Nicho',
+    desc: 'Ediciones exclusivas y aromas únicos que te distinguen.',
+    btn: 'DESCUBRIR',
+    genero: 'nicho',
+  },
+  {
+    img: p15,
+    badge: 'DESDE 20% OFF',
+    nombre: 'Perfumes Masculinos',
+    desc: 'Aromas intensos y sofisticados de marcas reconocidas.',
+    btn: 'VER COLECCIÓN',
+    genero: 'masculino',
+  },
+  {
+    img: p14,
+    badge: 'HASTA 40% OFF',
+    nombre: 'Perfumes Femeninos',
+    desc: 'Fragancias irresistibles para cada momento de tu día.',
+    btn: 'COMPRAR',
+    genero: 'femenino',
+  },
 ];
 
 const Offers = () => {
@@ -42,23 +71,23 @@ const Offers = () => {
   const countdown = useCountdown('2025-12-31T23:59:59');
 
   const handleAddToCart = () => {
-  const precioOriginal = 120;
-  const descuento = 30;
-  const precioFinal = precioOriginal * (1 - descuento / 100);
+    const precioOriginal = 120;
+    const descuento = 30;
+    const precioFinal = precioOriginal * (1 - descuento / 100);
 
-  addToCart({
-    id: 99,
-    name: 'One Million Elixir (Paco Rabanne)',
-    price: precioFinal,
-    originalPrice: precioOriginal,
-    descuento,
-    image: p16,
-    size: '100ml',
-    quantity: 1
-  });
+    addToCart({
+      id: 99,
+      name: 'One Million Elixir (Paco Rabanne)',
+      price: precioFinal,
+      originalPrice: precioOriginal,
+      descuento,
+      image: p16,
+      size: '100ml',
+      quantity: 1,
+    });
 
-  setIsCartOpen(true);
-};
+    setIsCartOpen(true);
+  };
 
   return (
     <div className="offers-page">
@@ -75,7 +104,6 @@ const Offers = () => {
             Encuentra tus fragancias favoritas con<br />
             descuentos especiales por tiempo limitado.
           </p>
-         c
         </div>
         <div className="offers-hero-img">
           <img src={p16} alt="Ofertas exclusivas" />
@@ -84,17 +112,7 @@ const Offers = () => {
             <span className="badge-num">40%</span>
             <span className="badge-bot">DE DESCUENTO</span>
           </div>
-          {categorias.map((cat, i) => (
-  <div key={i} className="offers-card">
-
-<Link
- to="/catalogo?oferta=true" className="offers-card-btn">
-  {cat.btn}
-</Link>
-  </div>
-))}
-      </div>
-    
+        </div>
       </div>
 
       {/* GRID DE CATEGORÍAS */}
@@ -112,7 +130,13 @@ const Offers = () => {
                 <p>{cat.desc}</p>
               </div>
             </div>
-            <Link to="/catalogo" className="offers-card-btn">{cat.btn}</Link>
+            {/* Link hacia el catálogo filtrado por género */}
+            <Link
+              to={`/catalogo?genero=${cat.genero}`}
+              className="offers-card-btn"
+            >
+              {cat.btn}
+            </Link>
           </div>
         ))}
       </div>

@@ -8,13 +8,14 @@ const CartPage = () => {
   const { cartItems, removeFromCart } = useCart();
 
   const subtotal = cartItems.reduce((sum, item) => {
-  if (item.tipoOferta === "2x1") {
-    const unidadesPagadas = Math.ceil(item.quantity / 2);
-    return sum + unidadesPagadas * item.price;
-  }
+    const itemPrice = Number(item.price) || 0;
+    if (item.tipoOferta === "2x1") {
+      const unidadesPagadas = Math.ceil(item.quantity / 2);
+      return sum + unidadesPagadas * itemPrice;
+    }
 
-  return sum + item.price * item.quantity;
-}, 0);
+    return sum + itemPrice * item.quantity;
+  }, 0);
 
   const envio = subtotal > 0 ? 150 : 0;
   const total = subtotal + envio;
@@ -58,23 +59,28 @@ const CartPage = () => {
               </div>
               
               <div className="product-price">
-  {item.originalPrice && item.originalPrice > item.price ? (
-    <>
-      <span style={{
-        textDecoration: "line-through",
-        color: "#999",
-        marginRight: "8px"
-      }}>
-        $ {item.originalPrice.toFixed(2)}
-      </span>
+  {(() => {
+    const itemPrice = Number(item.price) || 0;
+    const originalPrice = Number(item.originalPrice) || 0;
 
-      <span>
-        $ {item.price.toFixed(2)}
-      </span>
-    </>
-  ) : (
-    <span>$ {item.price.toFixed(2)}</span>
-  )}
+    return originalPrice > itemPrice ? (
+      <>
+        <span style={{
+          textDecoration: "line-through",
+          color: "#999",
+          marginRight: "8px"
+        }}>
+          $ {originalPrice.toFixed(2)}
+        </span>
+
+        <span>
+          $ {itemPrice.toFixed(2)}
+        </span>
+      </>
+    ) : (
+      <span>$ {itemPrice.toFixed(2)}</span>
+    );
+  })()}
 </div>
               
               <div className="product-quantity">
@@ -82,7 +88,14 @@ const CartPage = () => {
               </div>
               
               <div className="product-subtotal">
-                $ {(item.price * item.quantity).toFixed(2)}
+                $ {(() => {
+                  const itemPrice = Number(item.price) || 0;
+                  const itemQuantity = item.quantity || 0;
+                  const subtotal = item.tipoOferta === "2x1"
+                    ? Math.ceil(itemQuantity / 2) * itemPrice
+                    : itemPrice * itemQuantity;
+                  return subtotal.toFixed(2);
+                })()}
               </div>
               
               <div className="product-actions">

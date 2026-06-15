@@ -1,9 +1,9 @@
 import { useState } from "react";
 import useReveal from "../hooks/useReveal";
 import "../styles/catalog.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, X } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 import p1 from "../assets/perfume-1.jpg";
@@ -37,6 +37,14 @@ import p28 from "../assets/perfume-28.jpg";
 import p29 from "../assets/perfume-29.jpg";
 import p30 from "../assets/perfume-30.jpg";
 
+// Etiquetas legibles para los filtros de género que vienen de Ofertas
+const GENERO_LABELS = {
+  floral:    "Perfumes Florales",
+  nicho:     "Perfumes de Nicho",
+  masculino: "Perfumes Masculinos",
+  femenino:  "Perfumes Femeninos",
+};
+
 const BBDD_PRODUCTOS = [
   {
     id: 1,
@@ -48,21 +56,21 @@ const BBDD_PRODUCTOS = [
     precio: 85,
     cantidad: "100ml",
     notas: "Citrico, Vainilla, Ámbar-Cálido",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
-    
-  id: 2,
-  img: p2,
-  tipo: "EN DESCUENTO",
-  clase: "purple",
-  nombre: "Fleur Dé Percher",
-  categoria: "Diseñador",
-  precio: 72,
-  cantidad: "100ml",
-  enOferta: true,
-  descuento: 15
-
+    id: 2,
+    img: p2,
+    tipo: "EN DESCUENTO",
+    clase: "purple",
+    nombre: "Fleur Dé Percher",
+    categoria: "Diseñador",
+    precio: 72,
+    cantidad: "100ml",
+    enOferta: true,
+    descuento: 15,
+    generos: ["femenino", "floral"],
   },
   {
     id: 3,
@@ -75,7 +83,8 @@ const BBDD_PRODUCTOS = [
     cantidad: "100ml",
     notas: "Cuero, Tabaco, Bergamota",
     enOferta: true,
-    tipoOferta: "2x1"
+    tipoOferta: "2x1",
+    generos: ["masculino", "nicho"],
   },
   {
     id: 4,
@@ -87,7 +96,8 @@ const BBDD_PRODUCTOS = [
     precio: 95,
     cantidad: "50ml",
     notas: "Ámbar, Sándalo, Talco",
-    enOferta: false
+    enOferta: false,
+    generos: ["unisex", "nicho"],
   },
   {
     id: 5,
@@ -100,7 +110,8 @@ const BBDD_PRODUCTOS = [
     cantidad: "75ml",
     notas: "Rosa negra, Lichi, Café",
     enOferta: true,
-    descuento: 10
+    descuento: 10,
+    generos: ["femenino", "floral"],
   },
   {
     id: 6,
@@ -112,7 +123,8 @@ const BBDD_PRODUCTOS = [
     precio: 88,
     cantidad: "100ml",
     notas: "Vetiver, Cedro, Laúdano",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
     id: 7,
@@ -124,7 +136,8 @@ const BBDD_PRODUCTOS = [
     precio: 145,
     cantidad: "100ml",
     notas: "Toronja, Menta, Incienso, Cedro",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
     id: 8,
@@ -136,7 +149,8 @@ const BBDD_PRODUCTOS = [
     precio: 165,
     cantidad: "60ml",
     notas: "Canela, Nuez Moscada, Lavanda, Regaliz",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
     id: 9,
@@ -148,7 +162,8 @@ const BBDD_PRODUCTOS = [
     precio: 125,
     cantidad: "75ml",
     notas: "Notas Marinas, Mandarina Verde, Romero, Alizcle",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
     id: 10,
@@ -160,7 +175,8 @@ const BBDD_PRODUCTOS = [
     precio: 130,
     cantidad: "100ml",
     notas: "Manzana, Jengibre, Salvia, Bergamota",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
     id: 11,
@@ -173,7 +189,8 @@ const BBDD_PRODUCTOS = [
     cantidad: "50ml",
     notas: "Hojas de Tabaco, Vainilla, Cacao, Frutos Secos",
     enOferta: true,
-    tipoOferta: "2x1"
+    tipoOferta: "2x1",
+    generos: ["unisex", "nicho"],
   },
   {
     id: 12,
@@ -185,7 +202,8 @@ const BBDD_PRODUCTOS = [
     precio: 55,
     cantidad: "105ml",
     notas: "Limón, Piña, Abedul, Almizcle, Ámbar Gris",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino", "floral"],
   },
   {
     id: 13,
@@ -197,7 +215,8 @@ const BBDD_PRODUCTOS = [
     precio: 325,
     cantidad: "70ml",
     notas: "Azafrán, Jazmín, Madera de Ámbar, Resina de Abeto",
-    enOferta: false
+    enOferta: false,
+    generos: ["unisex", "nicho"],
   },
   {
     id: 14,
@@ -209,7 +228,8 @@ const BBDD_PRODUCTOS = [
     precio: 140,
     cantidad: "120ml",
     notas: "Grosellas Negras, Cítricos, Notas Sándalo, Cuero",
-    enOferta: false
+    enOferta: false,
+    generos: ["femenino", "nicho"],
   },
   {
     id: 15,
@@ -222,7 +242,8 @@ const BBDD_PRODUCTOS = [
     cantidad: "100ml",
     notas: "Menta, Manzana Verde, Limón Italiano, Habtonka",
     enOferta: true,
-    descuento: 25
+    descuento: 25,
+    generos: ["masculino"],
   },
   {
     id: 16,
@@ -234,7 +255,8 @@ const BBDD_PRODUCTOS = [
     precio: 120,
     cantidad: "100ml",
     notas: "Manzana, Rosa de Damasco, Haba Tonka, Vainilla",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
     id: 17,
@@ -242,11 +264,12 @@ const BBDD_PRODUCTOS = [
     tipo: "EN STOCK",
     clase: "green",
     nombre: "Le Male Elixir (Jean Paul Gaultier)",
-    categoria: "DISEDSADOR",
+    categoria: "DISEÑADOR",
     precio: 135,
     cantidad: "125ml",
     notas: "Lavanda, Menta, Vainilla, Benzofuí, Miel",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
     id: 18,
@@ -258,7 +281,8 @@ const BBDD_PRODUCTOS = [
     precio: 110,
     cantidad: "100ml",
     notas: "Toffee, Canela, Gamuza, Vainilla, Pimienta Rosa",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
     id: 19,
@@ -270,7 +294,8 @@ const BBDD_PRODUCTOS = [
     precio: 140,
     cantidad: "90ml",
     notas: "Lavanda Francesa, Mandarina, Flor de Azahar, Vainilla",
-    enOferta: false
+    enOferta: false,
+    generos: ["femenino", "floral"],
   },
   {
     id: 20,
@@ -282,7 +307,8 @@ const BBDD_PRODUCTOS = [
     precio: 130,
     cantidad: "80ml",
     notas: "Almendra, Café, Nardo, Haba Tonka, Cacao",
-    enOferta: false
+    enOferta: false,
+    generos: ["femenino"],
   },
   {
     id: 21,
@@ -294,7 +320,8 @@ const BBDD_PRODUCTOS = [
     precio: 105,
     cantidad: "100ml",
     notas: "Cardamomo, Caramelo Toffee, Madera de Ámbar",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
     id: 22,
@@ -306,7 +333,8 @@ const BBDD_PRODUCTOS = [
     precio: 150,
     cantidad: "100ml",
     notas: "Iris, Lavanda, Ambreta, Cedro de Virginia, Vetiver",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino"],
   },
   {
     id: 23,
@@ -318,7 +346,8 @@ const BBDD_PRODUCTOS = [
     precio: 95,
     cantidad: "100ml",
     notas: "Limón Quinto, Manzana Verde, Caléndula, Almizcle",
-    enOferta: false
+    enOferta: false,
+    generos: ["femenino", "floral"],
   },
   {
     id: 24,
@@ -330,7 +359,8 @@ const BBDD_PRODUCTOS = [
     precio: 160,
     cantidad: "100ml",
     notas: "Mango, Manzana, Cardamomo, Pachulí, Vainilla",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino", "nicho"],
   },
   {
     id: 25,
@@ -342,7 +372,8 @@ const BBDD_PRODUCTOS = [
     precio: 280,
     cantidad: "125ml",
     notas: "Manzana, Lavanda, Vainilla, Sándalo, Cardamomo",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino", "nicho"],
   },
   {
     id: 26,
@@ -355,7 +386,8 @@ const BBDD_PRODUCTOS = [
     cantidad: "100ml",
     notas: "Miel, Tabaco, Lavanda, Vainilla, Bergamota, Canela",
     enOferta: true,
-    tipoOferta: "descuento"
+    tipoOferta: "descuento",
+    generos: ["unisex", "nicho"],
   },
   {
     id: 27,
@@ -367,7 +399,8 @@ const BBDD_PRODUCTOS = [
     precio: 210,
     cantidad: "100ml",
     notas: "Piña, Toronja, Bergamota, Cedro, Musgo de Roble",
-    enOferta: false
+    enOferta: false,
+    generos: ["unisex", "nicho"],
   },
   {
     id: 28,
@@ -379,7 +412,8 @@ const BBDD_PRODUCTOS = [
     precio: 345,
     cantidad: "100ml",
     notas: "Piña, Abedul, Almizcle, Grosellas Negras, Bergamota",
-    enOferta: false
+    enOferta: false,
+    generos: ["masculino", "nicho"],
   },
   {
     id: 29,
@@ -390,8 +424,9 @@ const BBDD_PRODUCTOS = [
     categoria: "DISEÑADOR",
     precio: 50,
     cantidad: "100ml",
-    notas: "Canela, Canela, Caramelo, Haba Tonka, Vainilla, Amberwood",
-    enOferta: false
+    notas: "Canela, Caramelo, Haba Tonka, Vainilla, Amberwood",
+    enOferta: false,
+    generos: ["unisex"],
   },
   {
     id: 30,
@@ -403,56 +438,69 @@ const BBDD_PRODUCTOS = [
     precio: 135,
     cantidad: "120ml",
     notas: "Azafrán, Jengibre, Amberwood, Vainilla de Madagascar",
-    enOferta: false
-  }
+    enOferta: false,
+    generos: ["femenino", "floral", "nicho"],
+  },
 ];
 
 const Catalog = () => {
   const { addToCart, setIsCartOpen } = useCart();
   const [filtro, setFiltro] = useState("TODOS");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useReveal();
 
+  // Leer params de URL
+  const params = new URLSearchParams(location.search);
+  const oferta = params.get("oferta");
+  const generoParam = params.get("genero"); // "floral" | "nicho" | "masculino" | "femenino"
+
   const handleAddToBag = (product) => {
-  const precioFinal = product.enOferta
-    ? Math.round(product.precio * (1 - product.descuento / 100))
-    : product.precio;
+    const descuento = Number(product.descuento) || 0;
+    const precioFinal = product.enOferta && descuento > 0
+      ? Math.round(product.precio * (1 - descuento / 100))
+      : product.precio;
 
-  addToCart({
-    id: product.id,
-    name: product.nombre,
-    price: precioFinal,
-    image: product.img,
-    size: product.cantidad
+    addToCart({
+      id: product.id,
+      name: product.nombre,
+      price: precioFinal,
+      originalPrice: descuento > 0 ? product.precio : undefined,
+      tipoOferta: product.tipoOferta,
+      image: product.img,
+      size: product.cantidad,
+    });
+
+    setIsCartOpen(true);
+  };
+
+  // Limpiar el filtro de género y volver al catálogo normal
+  const limpiarFiltroGenero = () => {
+    navigate("/catalogo");
+  };
+
+  // Lógica de filtrado
+  const productosFiltrados = BBDD_PRODUCTOS.filter((p) => {
+    // Filtro por género (viene de Ofertas)
+    if (generoParam) {
+      return p.generos && p.generos.includes(generoParam);
+    }
+
+    // Filtro por oferta genérica
+    if (oferta) {
+      return p.enOferta || p.tipoOferta === "2x1";
+    }
+
+    // Filtros normales de disponibilidad
+    return filtro === "TODOS" ? true : p.tipo === filtro;
   });
-
-  setIsCartOpen(true);
-};
-
-// AQUÍ PEGAS ESTO
-
-const location = useLocation();
-
-const params = new URLSearchParams(location.search);
-const oferta = params.get("oferta");
-
-console.log("OFERTA:", oferta);
-console.log("URL COMPLETA:", location.search);
-console.log("OFERTA:", oferta);
-const productosFiltrados = BBDD_PRODUCTOS.filter((p) => {
-  if (oferta) {
-    return p.enOferta || p.tipoOferta === "2x1";
-  }
-
-  return filtro === "TODOS"
-    ? true
-    : p.tipo === filtro;
-});
 
   const consultarWhatsApp = (producto) => {
     const numero = "50587663145";
-    const precioFinal = producto.enOferta 
-      ? Math.round(producto.precio * (1 - producto.descuento / 100))
+    const descuento = Number(producto.descuento) || 0;
+    const precioFinal = producto.enOferta && descuento > 0
+      ? Math.round(producto.precio * (1 - descuento / 100))
       : producto.precio;
 
     const mensaje = `Hola, estoy interesado en la fragancia "${producto.nombre}" (${producto.cantidad}). Precio: $${precioFinal}. ¿Podrías brindarme más información?`;
@@ -471,35 +519,87 @@ const productosFiltrados = BBDD_PRODUCTOS.filter((p) => {
         </p>
       </div>
 
-      <div className="filters fade-up delay-1">
-        {["TODOS", "EN STOCK", "POR ENCARGO"].map((tipoFiltro) => (
-          <button
-            key={tipoFiltro}
-            className={filtro === tipoFiltro ? "active" : ""}
-            onClick={() => setFiltro(tipoFiltro)}
-          >
-            {tipoFiltro}
+      {/* BANNER DE FILTRO ACTIVO — Diseño C (Tarjeta con ícono) */}
+      {generoParam && GENERO_LABELS[generoParam] && (
+        <div className="catalog-filter-banner fade-up">
+          <div className="catalog-filter-banner-inner">
+
+            {/* Izquierda: ícono + textos */}
+            <div className="catalog-filter-left">
+              <div className="catalog-filter-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 3h6l1 4H8L9 3z"/>
+                  <rect x="6" y="7" width="12" height="13" rx="2"/>
+                  <path d="M12 3v-1"/>
+                  <circle cx="12" cy="2" r="1"/>
+                </svg>
+              </div>
+              <div className="catalog-filter-meta">
+                <p className="catalog-filter-label">Filtro activo · Ofertas</p>
+                <p className="catalog-filter-name">{GENERO_LABELS[generoParam]}</p>
+                <p className="catalog-filter-count">
+                  {productosFiltrados.length} fragancia{productosFiltrados.length !== 1 ? "s" : ""} disponible{productosFiltrados.length !== 1 ? "s" : ""}
+                </p>
+              </div>
+            </div>
+
+            {/* Botón limpiar */}
+            <button
+              className="catalog-filter-clear"
+              onClick={limpiarFiltroGenero}
+              aria-label="Quitar filtro y ver todo el catálogo"
+            >
+              <X size={13} />
+              Ver todo
+            </button>
+
+          </div>
+        </div>
+      )}
+
+      {/* Filtros normales: solo se muestran si NO hay filtro de género activo */}
+      {!generoParam && !oferta && (
+        <div className="filters fade-up delay-1">
+          {["TODOS", "EN STOCK", "POR ENCARGO"].map((tipoFiltro) => (
+            <button
+              key={tipoFiltro}
+              className={filtro === tipoFiltro ? "active" : ""}
+              onClick={() => setFiltro(tipoFiltro)}
+            >
+              {tipoFiltro}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Mensaje si no hay productos */}
+      {productosFiltrados.length === 0 && (
+        <div className="catalog-empty fade-up">
+          <p>No encontramos fragancias en esta categoría.</p>
+          <button className="catalog-empty-btn" onClick={limpiarFiltroGenero}>
+            Ver todo el catálogo
           </button>
-        ))}
-      </div>
+        </div>
+      )}
 
       <div className="products">
         {productosFiltrados.map((p, i) => {
-          const tieneDescuento = p.enOferta && p.descuento;
-
-const precioConDescuento = tieneDescuento
-  ? Math.round(p.precio * (1 - p.descuento / 100))
-  : p.precio;
+          const descuento = Number(p.descuento) || 0;
+          const tieneDescuento = p.enOferta && descuento > 0;
+          const precioConDescuento = tieneDescuento
+            ? Math.round(p.precio * (1 - descuento / 100))
+            : p.precio;
 
           return (
             <div className={`product fade-up delay-${i % 3}`} key={p.id}>
               <div className="product-img-container">
                 <img src={p.img} alt={p.nombre} />
-               {p.tipoOferta === "2x1" ? (
-  <span className="badge-discount">2x1</span>
-) : tieneDescuento ? (
-  <span className="badge-discount">-{p.descuento}%</span>
-) : null}
+                {p.tipoOferta === "2x1" ? (
+                  <span className="badge-discount">2x1</span>
+                ) : tieneDescuento ? (
+                  <span className="badge-discount">-{p.descuento}%</span>
+                ) : null}
               </div>
 
               <span className={`badge ${p.clase}`}>{p.tipo}</span>
@@ -513,23 +613,31 @@ const precioConDescuento = tieneDescuento
                 <div className="bottom">
                   <div className="precio-container">
                     {p.tipoOferta === "2x1" ? (
-  <span className="precio">${p.precio}</span>
-) : tieneDescuento ? (
-  <>
-    <span className="precio-original">${p.precio}</span>
-    <span className="precio-oferta">${precioConDescuento}</span>
-  </>
-) : (
-  <span className="precio">${p.precio}</span>
-)}
+                      <span className="precio">${p.precio}</span>
+                    ) : tieneDescuento ? (
+                      <>
+                        <span className="precio-original">${p.precio}</span>
+                        <span className="precio-oferta">
+                          ${precioConDescuento}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="precio">${p.precio}</span>
+                    )}
                   </div>
                 </div>
 
                 <div className="product-actions">
-                  <button className="btn-main small" onClick={() => consultarWhatsApp(p)}>
+                  <button
+                    className="btn-main small"
+                    onClick={() => consultarWhatsApp(p)}
+                  >
                     Consultar
                   </button>
-                  <button className="add-to-cart-btn" onClick={() => handleAddToBag(p)}>
+                  <button
+                    className="add-to-cart-btn"
+                    onClick={() => handleAddToBag(p)}
+                  >
                     <ShoppingBag size={16} />
                     <span>Agregar</span>
                   </button>
