@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useReveal from "../hooks/useReveal";
 import "../styles/catalog.css";
+import { useLocation } from "react-router-dom";
 
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "../context/CartContext";
@@ -50,29 +51,31 @@ const BBDD_PRODUCTOS = [
     enOferta: false
   },
   {
-    id: 2,
-    img: p2,
-    tipo: "EN STOCK",
-    clase: "green",
-    nombre: "Fleur Dé Percher",
-    categoria: "DISEÑADOR",
-    precio: 72,
-    cantidad: "75ml",
-    notas: "Jazmín, Peonía, Almizcle",
-    enOferta: false,
-    descuento: 15
+    
+  id: 2,
+  img: p2,
+  tipo: "EN DESCUENTO",
+  clase: "purple",
+  nombre: "Fleur Dé Percher",
+  categoria: "Diseñador",
+  precio: 72,
+  cantidad: "100ml",
+  enOferta: true,
+  descuento: 15
+
   },
   {
     id: 3,
     img: p3,
-    tipo: "POR ENCARGO",
+    tipo: "EN DESCUENTO",
     clase: "purple",
     nombre: "Ombré Leather",
     categoria: "NICHO",
     precio: 120,
     cantidad: "100ml",
     notas: "Cuero, Tabaco, Bergamota",
-    enOferta: false
+    enOferta: true,
+    tipoOferta: "2x1"
   },
   {
     id: 4,
@@ -96,7 +99,7 @@ const BBDD_PRODUCTOS = [
     precio: 68,
     cantidad: "75ml",
     notas: "Rosa negra, Lichi, Café",
-    enOferta: false,
+    enOferta: true,
     descuento: 10
   },
   {
@@ -162,14 +165,15 @@ const BBDD_PRODUCTOS = [
   {
     id: 11,
     img: p11,
-    tipo: "POR ENCARGO",
+    tipo: "EN DESCUENTO",
     clase: "purple",
     nombre: "Tobacco Vanille (Tom Ford)",
     categoria: "NICHO",
     precio: 295,
     cantidad: "50ml",
     notas: "Hojas de Tabaco, Vainilla, Cacao, Frutos Secos",
-    enOferta: false
+    enOferta: true,
+    tipoOferta: "2x1"
   },
   {
     id: 12,
@@ -210,14 +214,15 @@ const BBDD_PRODUCTOS = [
   {
     id: 15,
     img: p15,
-    tipo: "EN STOCK",
-    clase: "green",
+    tipo: "EN DESCUENTO",
+    clase: "red",
     nombre: "Versace Eros",
     categoria: "DISEÑADOR",
     precio: 115,
     cantidad: "100ml",
     notas: "Menta, Manzana Verde, Limón Italiano, Habtonka",
-    enOferta: false
+    enOferta: true,
+    descuento: 25
   },
   {
     id: 16,
@@ -342,14 +347,15 @@ const BBDD_PRODUCTOS = [
   {
     id: 26,
     img: p26,
-    tipo: "POR ENCARGO",
+    tipo: "EN DESCUENTO",
     clase: "purple",
     nombre: "Naxos (Xerjoff)",
     categoria: "NICHO",
     precio: 265,
     cantidad: "100ml",
     notas: "Miel, Tabaco, Lavanda, Vainilla, Bergamota, Canela",
-    enOferta: false
+    enOferta: true,
+    tipoOferta: "descuento"
   },
   {
     id: 27,
@@ -408,25 +414,40 @@ const Catalog = () => {
   useReveal();
 
   const handleAddToBag = (product) => {
-    const precioFinal = product.enOferta 
-      ? Math.round(product.precio * (1 - product.descuento / 100))
-      : product.precio;
+  const precioFinal = product.enOferta
+    ? Math.round(product.precio * (1 - product.descuento / 100))
+    : product.precio;
 
-    addToCart({
-      id: product.id,
-      name: product.nombre,
-      price: precioFinal,
-      image: product.img,
-      size: product.cantidad
-    });
-    
-    setIsCartOpen(true);
-  };
+  addToCart({
+    id: product.id,
+    name: product.nombre,
+    price: precioFinal,
+    image: product.img,
+    size: product.cantidad
+  });
 
-  const productosFiltrados =
-    filtro === "TODOS"
-      ? BBDD_PRODUCTOS
-      : BBDD_PRODUCTOS.filter((p) => p.tipo === filtro);
+  setIsCartOpen(true);
+};
+
+// AQUÍ PEGAS ESTO
+
+const location = useLocation();
+
+const params = new URLSearchParams(location.search);
+const oferta = params.get("oferta");
+
+console.log("OFERTA:", oferta);
+console.log("URL COMPLETA:", location.search);
+console.log("OFERTA:", oferta);
+const productosFiltrados = BBDD_PRODUCTOS.filter((p) => {
+  if (oferta) {
+    return p.enOferta || p.tipoOferta === "2x1";
+  }
+
+  return filtro === "TODOS"
+    ? true
+    : p.tipo === filtro;
+});
 
   const consultarWhatsApp = (producto) => {
     const numero = "50587663145";
@@ -464,18 +485,21 @@ const Catalog = () => {
 
       <div className="products">
         {productosFiltrados.map((p, i) => {
-          const tieneDescuento = p.enOferta;
-          const precioConDescuento = tieneDescuento
-            ? Math.round(p.precio * (1 - p.descuento / 100))
-            : p.precio;
+          const tieneDescuento = p.enOferta && p.descuento;
+
+const precioConDescuento = tieneDescuento
+  ? Math.round(p.precio * (1 - p.descuento / 100))
+  : p.precio;
 
           return (
             <div className={`product fade-up delay-${i % 3}`} key={p.id}>
               <div className="product-img-container">
                 <img src={p.img} alt={p.nombre} />
-                {tieneDescuento && (
-                  <span className="badge-discount">-{p.descuento}%</span>
-                )}
+               {p.tipoOferta === "2x1" ? (
+  <span className="badge-discount">2x1</span>
+) : tieneDescuento ? (
+  <span className="badge-discount">-{p.descuento}%</span>
+) : null}
               </div>
 
               <span className={`badge ${p.clase}`}>{p.tipo}</span>
@@ -488,14 +512,16 @@ const Catalog = () => {
 
                 <div className="bottom">
                   <div className="precio-container">
-                    {tieneDescuento ? (
-                      <>
-                        <span className="precio-original">${p.precio}</span>
-                        <span className="precio-oferta">${precioConDescuento}</span>
-                      </>
-                    ) : (
-                      <span className="precio">${p.precio}</span>
-                    )}
+                    {p.tipoOferta === "2x1" ? (
+  <span className="precio">${p.precio}</span>
+) : tieneDescuento ? (
+  <>
+    <span className="precio-original">${p.precio}</span>
+    <span className="precio-oferta">${precioConDescuento}</span>
+  </>
+) : (
+  <span className="precio">${p.precio}</span>
+)}
                   </div>
                 </div>
 

@@ -7,9 +7,16 @@ import '../styles/cartPage.css';
 const CartPage = () => {
   const { cartItems, removeFromCart } = useCart();
 
-  // Cálculo del subtotal
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const envio = subtotal > 0 ? 150 : 0; // Ejemplo en Córdobas (C$ 150 envío base o gratis si aplica)
+  const subtotal = cartItems.reduce((sum, item) => {
+  if (item.tipoOferta === "2x1") {
+    const unidadesPagadas = Math.ceil(item.quantity / 2);
+    return sum + unidadesPagadas * item.price;
+  }
+
+  return sum + item.price * item.quantity;
+}, 0);
+
+  const envio = subtotal > 0 ? 150 : 0;
   const total = subtotal + envio;
 
   if (cartItems.length === 0) {
@@ -51,8 +58,24 @@ const CartPage = () => {
               </div>
               
               <div className="product-price">
-                $ {item.price.toFixed(2)}
-              </div>
+  {item.originalPrice && item.originalPrice > item.price ? (
+    <>
+      <span style={{
+        textDecoration: "line-through",
+        color: "#999",
+        marginRight: "8px"
+      }}>
+        $ {item.originalPrice.toFixed(2)}
+      </span>
+
+      <span>
+        $ {item.price.toFixed(2)}
+      </span>
+    </>
+  ) : (
+    <span>$ {item.price.toFixed(2)}</span>
+  )}
+</div>
               
               <div className="product-quantity">
                 <span className="qty-value">{item.quantity}</span>

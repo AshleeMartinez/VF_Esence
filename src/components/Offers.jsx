@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Truck, Shield, Lock, Headphones, Gift } from 'lucide-react';
+import { Truck, Shield, Lock, Headphones, Gift } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import '../styles/offers.css';
 
@@ -42,9 +42,23 @@ const Offers = () => {
   const countdown = useCountdown('2025-12-31T23:59:59');
 
   const handleAddToCart = () => {
-    addToCart({ id: 99, name: 'One Million Elixir (Paco Rabanne)', price: 120, image: p16, size: '100ml', quantity: 1 });
-    setIsCartOpen(true);
-  };
+  const precioOriginal = 120;
+  const descuento = 30;
+  const precioFinal = precioOriginal * (1 - descuento / 100);
+
+  addToCart({
+    id: 99,
+    name: 'One Million Elixir (Paco Rabanne)',
+    price: precioFinal,
+    originalPrice: precioOriginal,
+    descuento,
+    image: p16,
+    size: '100ml',
+    quantity: 1
+  });
+
+  setIsCartOpen(true);
+};
 
   return (
     <div className="offers-page">
@@ -61,10 +75,7 @@ const Offers = () => {
             Encuentra tus fragancias favoritas con<br />
             descuentos especiales por tiempo limitado.
           </p>
-          <Link to="/catalogo" className="offers-hero-btn">
-            <ShoppingBag size={16} />
-            VER OFERTAS
-          </Link>
+         c
         </div>
         <div className="offers-hero-img">
           <img src={p16} alt="Ofertas exclusivas" />
@@ -73,7 +84,17 @@ const Offers = () => {
             <span className="badge-num">40%</span>
             <span className="badge-bot">DE DESCUENTO</span>
           </div>
-        </div>
+          {categorias.map((cat, i) => (
+  <div key={i} className="offers-card">
+
+<Link
+ to="/catalogo?oferta=true" className="offers-card-btn">
+  {cat.btn}
+</Link>
+  </div>
+))}
+      </div>
+    
       </div>
 
       {/* GRID DE CATEGORÍAS */}
